@@ -1,0 +1,272 @@
+{
+    "workbench.iconTheme": "vscode-icons",
+    "reuseView": true,
+    "security.workspace.trust.untrustedFiles": "open",
+    "workbench.colorCustomizations": {
+        "terminal.background": "#1D2021",
+        "terminal.foreground": "#f1f1f1",
+        "statusBar.noFolderBackground": "#000000",
+        "statusBar.debuggingBackground": "#000000",
+        "statusBar.debuggingForeground": "#434C5E"
+    },
+    "task.problemMatchers.neverPrompt": false,
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "editor.fontFamily": "JetBrains Mono",
+    "editor.fontLigatures": true,
+    "workbench.colorTheme": "Dracula Theme",
+    "terminal.explorerKind": "external",
+    "[typescript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    },
+    "editor.fontSize": 16,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "editor.accessibilitySupport": "off",
+    "editor.minimap.enabled": false,
+    "git.openRepositoryInParentFolders": "never",
+    "emmet.includeLanguages": {
+        "phoenix-heex": "html"
+    },
+    "[phoenix-heex]": {
+        "editor.defaultFormatter": "JakeBecker.elixir-ls"
+    },
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "sonarlint.rules": {
+        "Web:TableHeaderHasIdOrScopeCheck": {
+            "level": "off"
+        }
+    },
+    "explorer.confirmDragAndDrop": false,
+    "azurite.skipApiVersionCheck": true,
+    "vim.commandLineModeKeyBindings": [],
+    "vim.useSystemClipboard": true,
+    "editor.cursorSurroundingLines": 8,
+    "security.allowedUNCHosts": [
+        "wsl.localhost"
+    ],
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [
+                "g",
+                "p",
+                "d"
+            ],
+            "commands": [
+                "editor.action.peekDefinition"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "h"
+            ],
+            "commands": [
+                "editor.action.showDefinitionPreviewHover"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "i"
+            ],
+            "commands": [
+                "editor.action.goToImplementation"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "p",
+                "i"
+            ],
+            "commands": [
+                "editor.action.peekImplementation"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "q"
+            ],
+            "commands": [
+                "editor.action.quickFix"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "r"
+            ],
+            "commands": [
+                "editor.action.referenceSearch.trigger"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "p",
+                "t"
+            ],
+            "commands": [
+                "editor.action.peekTypeDefinition"
+            ]
+        }
+    ],
+    "vim.highlightedyank.enable": true,
+    "vim.highlightedyank.color": "#a9dc7660",
+    "vim.highlightedyank.duration": 250,
+    "vim.vimrc.enable": true,
+    "vim.leader": " ",
+    "vim.easymotion": true,
+    "vim.sneak": true,
+    "vim.easymotionKeys": "hklyuiopnm,qwertzxcvbasdgjf",
+    "vim.easymotionMarkerBackgroundColor": "#ffffff",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": [
+                "<leader>",
+                "<leader>",
+                "s"
+            ],
+            "after": [
+                "<leader>",
+                "<leader>",
+                "s"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<leader>",
+                "f"
+            ],
+            "after": [
+                "<leader>",
+                "<leader>",
+                "f"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<leader>",
+                "F"
+            ],
+            "after": [
+                "<leader>",
+                "<leader>",
+                "F"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<leader>",
+                "t"
+            ],
+            "after": [
+                "<leader>",
+                "<leader>",
+                "t"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<leader>",
+                "w"
+            ],
+            "after": [
+                "<leader>",
+                "<leader>",
+                "w"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<leader>",
+                "b"
+            ],
+            "after": [
+                "<leader>",
+                "<leader>",
+                "b"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<leader>",
+                "j"
+            ],
+            "after": [
+                "<leader>",
+                "<leader>",
+                "j"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "<leader>",
+                "k"
+            ],
+            "after": [
+                "<leader>",
+                "<leader>",
+                "k"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "f",
+                "f"
+            ],
+            "commands": [
+                "editor.action.formatDocument"
+            ]
+        },
+        {
+            "before": [
+                "<leader>",
+                "a",
+                "i"
+            ],
+            "commands": [
+                "editor.action.quickFix"
+            ]
+        },
+        {
+            "before": [
+                "g",
+                "b"
+            ],
+            "commands": [
+                "editor.debug.action.toggleBreakpoint"
+            ]
+        }
+    ],    
+    "workbench.editor.openPositioning": "last",
+    "git.confirmSync": false,
+    "terminal.integrated.defaultLocation": "editor",
+    "terminal.integrated.defaultProfile.linux": "wsl",
+    "git.enableSmartCommit": true,
+    "[elixir]": {
+        "editor.defaultFormatter": "JakeBecker.elixir-ls"
+    },
+    "vim.sneakUseIgnorecaseAndSmartcase": true,
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "vim.vimrc.path": "$HOME/.vimrc",
+    "terminal.integrated.gpuAcceleration": "off",
+    "editor.inlineSuggest.showToolbar": "always",
+    "github.copilot.enable": {
+        "*": true,
+        "plaintext": true,
+        "markdown": false,
+        "scminput": false
+    },
+}
