@@ -53,10 +53,10 @@ keymap('n', '<leader>d', '"_d', opts)
 keymap('v', '<leader>d', '"_d', opts)
 
 -- Go to first non-blank character of line
-keymap({ 'n', 'v' }, '<leader>bb', '^', opts)
+keymap({ 'n', 'v' }, '<leader>h', '^', opts)
 
 -- Go to last non-blank character of line
-keymap({ 'n', 'v' }, '<leader>ee', 'g_', opts)
+keymap({ 'n', 'v' }, '<leader>l', 'g_', opts)
 
 -- Toggle case of current character in normal and visual mode
 keymap('n', '<leader>u', '~', opts)
@@ -68,6 +68,20 @@ keymap("v", ">", ">gv", opts)
 
 -- removes highlighting after escaping vim search
 keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
+
+-- Customized highlight yank
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank({
+      higroup = 'Visual',    -- Highlight group to use (default: 'IncSearch')
+      timeout = 300,         -- Time in milliseconds (default: 150)
+      on_visual = true,      -- Highlight when yanking in visual mode (default: true)
+      on_macro = false,      -- Highlight when recording macros (default: false)
+    })
+  end,
+})
 
 -- Diferent settings for nvim on VSCode/Cursor
 if vim.g.vscode then
@@ -87,6 +101,7 @@ if vim.g.vscode then
     keymap({"n", "v"}, "<leader>vp", function() vscode.action('workbench.actions.view.problems') end, opts)
     keymap({"n", "v"}, "<leader>vc", function() vscode.action('workbench.action.showCommands') end, opts)
     keymap({"n", "v"}, "<leader>ve", function() vscode.action('workbench.view.explorer') end, opts)
+    keymap({"n", "v"}, "<leader>vt", function() vscode.action('workbench.action.togglePanel') end, opts)
     
     -- File operations (f prefix)
     keymap({"n", "v"}, "<leader>fs", function() vscode.action('workbench.action.findInFiles') end, opts)
