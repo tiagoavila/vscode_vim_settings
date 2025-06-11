@@ -88,9 +88,13 @@ if vim.g.vscode then
     -- VSCode extension
     local vscode = require("vscode")
 
+    -- Code navigation
+    keymap({"n", "v"}, "gq", function() vscode.action('editor.action.quickFix') end, opts)
+    keymap({"n", "v"}, "gi", function() vscode.action('editor.action.goToImplementation') end, opts)
+    keymap({"n", "v"}, "gpi", function() vscode.action('editor.action.peekImplementation') end, opts)
+    keymap({"n", "v"}, "gr", function() vscode.action('editor.action.referenceSearch.trigger') end, opts)
+
     keymap({"n", "v"}, '<leader>fd', function() vscode.action('editor.action.formatDocument') end, opts)
-    keymap({"n", "v"}, "<leader>a", function() vscode.action('editor.action.quickFix') end, opts)
-    keymap({"n", "v"}, "<leader>ff", function() vscode.action('workbench.action.quickOpen') end, opts)
     keymap({"n", "v"}, "<leader>q", function() vscode.action('workbench.action.closeActiveEditor')end, opts)
 
     -- Breakpoint operations (b prefix)
