@@ -50,7 +50,7 @@
         "command": "explorer.newFile"
     },
     {
-        "key": "ctrl+shift+numpad_subtract",
+        "key": "ctrl+shift+oem_minus",
         "command": "workbench.files.action.collapseExplorerFolders"
     },
     {
@@ -58,7 +58,7 @@
         "command": "workbench.panel.aichat"
     },
     {
-        "key": "alt+t t",
+        "key": "alt+w t",
         "command": "workbench.action.terminal.toggleTerminal",
         "when": "terminal.active"
     },
@@ -126,11 +126,6 @@
         "command": "github.copilot.completions.toggle"
     },
     {
-        "key": "ctrl+shift+c",
-        "command": "-workbench.action.terminal.openNativeConsole",
-        "when": "!terminalFocus"
-    },
-    {
         "key": "ctrl+e ctrl+t",
         "command": "workbench.action.terminal.openNativeConsole"
     },
@@ -143,28 +138,14 @@
         "command": "explorer.newFolder"
     },
     {
-        "key": "alt+t c",
+        "key": "alt+w c",
         "command": "workbench.panel.chat",
         "when": "workbench.panel.chat.view.copilot.active"
     },
     {
-        "key": "ctrl+alt+i",
-        "command": "-workbench.panel.chat",
-        "when": "workbench.panel.chat.view.copilot.active"
-    },
-    {
-        "key": "alt+t o",
+        "key": "alt+w o",
         "command": "workbench.action.output.toggleOutput",
         "when": "workbench.panel.output.active"
-    },
-    {
-        "key": "ctrl+k ctrl+h",
-        "command": "-workbench.action.output.toggleOutput",
-        "when": "workbench.panel.output.active"
-    },
-    {
-        "key": "ctrl+w",
-        "command": "-workbench.action.closeActiveEditor"
     },
     {
         "key": "ctrl+alt+o",
@@ -185,8 +166,11 @@
         "when": "inKeybindings && keybindingFocus"
     },
     {
-        "key": "ctrl+k ctrl+a",
-        "command": "-keybindings.editor.addKeybinding",
-        "when": "inKeybindings && keybindingFocus"
-    }
+        "key": "alt+w p",
+        "command": "workbench.action.togglePanel"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "-workbench.action.togglePanel"
+    },
 ]
