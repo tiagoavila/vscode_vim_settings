@@ -75,7 +75,7 @@
         "command": "-workbench.action.closeActiveEditor"
     },
     {
-        "key": "ctrl+w ctrl+o",
+        "key": "ctrl+w o",
         "command": "workbench.action.closeOtherEditors"
     },
     {
@@ -83,7 +83,7 @@
         "command": "-workbench.action.closeUnmodifiedEditors"
     },
     {
-        "key": "ctrl+w ctrl+s",
+        "key": "ctrl+w s",
         "command": "workbench.action.closeUnmodifiedEditors"
     },
     {
@@ -95,7 +95,7 @@
         "command": "-workbench.action.closeAllGroups"
     },
     {
-        "key": "ctrl+w ctrl+a",
+        "key": "ctrl+w a",
         "command": "workbench.action.closeEditorsInGroup"
     },
     {
