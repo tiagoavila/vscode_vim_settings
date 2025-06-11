@@ -1,6 +1,5 @@
 {
     "workbench.iconTheme": "vscode-icons",
-    "reuseView": true,
     "security.workspace.trust.untrustedFiles": "open",
     "workbench.colorCustomizations": {
         "terminal.background": "#1D2021",
@@ -33,223 +32,8 @@
         "editor.defaultFormatter": "JakeBecker.elixir-ls"
     },
     "javascript.updateImportsOnFileMove.enabled": "always",
-    "sonarlint.rules": {
-        "Web:TableHeaderHasIdOrScopeCheck": {
-            "level": "off"
-        }
-    },
     "explorer.confirmDragAndDrop": false,
-    "azurite.skipApiVersionCheck": true,
-    "vim.commandLineModeKeyBindings": [],
-    "vim.useSystemClipboard": true,
     "editor.cursorSurroundingLines": 8,
-    "security.allowedUNCHosts": [
-        "wsl.localhost"
-    ],
-    "vim.normalModeKeyBindings": [
-        {
-            "before": [
-                "g",
-                "p",
-                "d"
-            ],
-            "commands": [
-                "editor.action.peekDefinition"
-            ]
-        },
-        {
-            "before": [
-                "g",
-                "h"
-            ],
-            "commands": [
-                "editor.action.showDefinitionPreviewHover"
-            ]
-        },
-        {
-            "before": [
-                "g",
-                "i"
-            ],
-            "commands": [
-                "editor.action.goToImplementation"
-            ]
-        },
-        {
-            "before": [
-                "g",
-                "p",
-                "i"
-            ],
-            "commands": [
-                "editor.action.peekImplementation"
-            ]
-        },
-        {
-            "before": [
-                "g",
-                "q"
-            ],
-            "commands": [
-                "editor.action.quickFix"
-            ]
-        },
-        {
-            "before": [
-                "g",
-                "r"
-            ],
-            "commands": [
-                "editor.action.referenceSearch.trigger"
-            ]
-        },
-        {
-            "before": [
-                "g",
-                "p",
-                "t"
-            ],
-            "commands": [
-                "editor.action.peekTypeDefinition"
-            ]
-        }
-    ],
-    "vim.highlightedyank.enable": true,
-    "vim.highlightedyank.color": "#a9dc7660",
-    "vim.highlightedyank.duration": 250,
-    "vim.vimrc.enable": true,
-    "vim.leader": " ",
-    "vim.easymotion": true,
-    "vim.sneak": true,
-    "vim.easymotionKeys": "hklyuiopnm,qwertzxcvbasdgjf",
-    "vim.easymotionMarkerBackgroundColor": "#ffffff",
-    "vim.normalModeKeyBindingsNonRecursive": [
-        {
-            "before": [
-                "<leader>",
-                "<leader>",
-                "s"
-            ],
-            "after": [
-                "<leader>",
-                "<leader>",
-                "s"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "<leader>",
-                "f"
-            ],
-            "after": [
-                "<leader>",
-                "<leader>",
-                "f"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "<leader>",
-                "F"
-            ],
-            "after": [
-                "<leader>",
-                "<leader>",
-                "F"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "<leader>",
-                "t"
-            ],
-            "after": [
-                "<leader>",
-                "<leader>",
-                "t"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "<leader>",
-                "w"
-            ],
-            "after": [
-                "<leader>",
-                "<leader>",
-                "w"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "<leader>",
-                "b"
-            ],
-            "after": [
-                "<leader>",
-                "<leader>",
-                "b"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "<leader>",
-                "j"
-            ],
-            "after": [
-                "<leader>",
-                "<leader>",
-                "j"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "<leader>",
-                "k"
-            ],
-            "after": [
-                "<leader>",
-                "<leader>",
-                "k"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "f",
-                "f"
-            ],
-            "commands": [
-                "editor.action.formatDocument"
-            ]
-        },
-        {
-            "before": [
-                "<leader>",
-                "a",
-                "i"
-            ],
-            "commands": [
-                "editor.action.quickFix"
-            ]
-        },
-        {
-            "before": [
-                "g",
-                "b"
-            ],
-            "commands": [
-                "editor.debug.action.toggleBreakpoint"
-            ]
-        }
-    ],    
     "workbench.editor.openPositioning": "last",
     "git.confirmSync": false,
     "terminal.integrated.defaultLocation": "editor",
@@ -258,9 +42,7 @@
     "[elixir]": {
         "editor.defaultFormatter": "JakeBecker.elixir-ls"
     },
-    "vim.sneakUseIgnorecaseAndSmartcase": true,
     "github.copilot.nextEditSuggestions.enabled": true,
-    "vim.vimrc.path": "$HOME/.vimrc",
     "terminal.integrated.gpuAcceleration": "off",
     "editor.inlineSuggest.showToolbar": "always",
     "github.copilot.enable": {
@@ -268,5 +50,88 @@
         "plaintext": true,
         "markdown": false,
         "scminput": false
+    },
+    "vscode-neovim.neovimExecutablePaths.win32": "C:\\Program Files\\Neovim\\bin\\nvim.exe",
+    "vscode-neovim.neovimInitVimPaths.win32": "C:\\Users\\tiago\\AppData\\Local\\nvim\\init.lua",
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "vscode-neovim.compositeKeys": {
+        "jj": {
+            "command": "vscode-neovim.escape",
+        },
+        "jk": {
+            // Use lua to execute any logic
+            "command": "vscode-neovim.lua",
+            "args": [
+                [
+                    "local code = require('vscode')",
+                    "code.action('vscode-neovim.escape')",
+                    "code.action('workbench.action.files.save')",
+                ],
+            ],
+        },
+        "gb": {
+            "command": "vscode-neovim.lua",
+            "args": [
+                [
+                    "local code = require('vscode')",
+                    "code.action('editor.debug.action.toggleBreakpoint')",
+                ],
+            ],
+        }
+    },
+    "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
+    "vscode-neovim.neovimInitVimPaths.linux": "~/.config/nvim/init.lua",
+    "vscode-neovim.ctrlKeysForNormalMode": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "h",
+        "j",
+        "k",
+        "l",
+        "m",
+        "o",
+        "r",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z",
+        "/",
+        "]",
+        "right",
+        "left",
+        "up",
+        "down",
+        "backspace",
+        "delete"
+    ],
+    "editor.lineNumbers": "relative",
+    "vscode-neovim.highlightGroups.highlights": {
+
+        "IncSearch": {
+            "backgroundColor": "theme.editor.findMatchBackground"
+        },
+        "CurSearch": {
+            "backgroundColor": "theme.editor.findMatchBackground"
+        },
+        "Search": {
+            "backgroundColor": "theme.editor.findMatchHighlightBackground"
+        },
+        "Substitute": {
+            "backgroundColor": "theme.editor.foreground",
+            "color": "theme.editor.background"
+        },
+        "Visual": {
+            "backgroundColor": "theme.editor.findMatchBackground",
+            "color": "theme.editor.background"
+        }
     },
 }
