@@ -9,6 +9,7 @@ vim.cmd [[
   call plug#begin()
   Plug 'justinmk/vim-sneak'
   Plug 'tpope/vim-surround'
+  Plug 'easymotion/vim-easymotion'
   call plug#end()
 ]]
 
@@ -89,6 +90,7 @@ if vim.g.vscode then
     local vscode = require("vscode")
 
     -- Code navigation
+    keymap({"n", "v"}, "<leader>ff", function() vscode.action('editor.action.quickFix') end, opts)
     keymap({"n", "v"}, "gq", function() vscode.action('editor.action.quickFix') end, opts)
     keymap({"n", "v"}, "gi", function() vscode.action('editor.action.goToImplementation') end, opts)
     keymap({"n", "v"}, "gpi", function() vscode.action('editor.action.peekImplementation') end, opts)
@@ -122,9 +124,9 @@ if vim.g.vscode then
     keymap({"n", "v"}, "<leader>rr", function() vscode.action('editor.action.refactor') end, opts)
 
     -- Editor management (e prefix)
-    keymap({"n", "v"}, "<leader>es", function() vscode.action('workbench.action.splitEditorRight') end, opts)
+    keymap({"n", "v"}, "<leader>er", function() vscode.action('workbench.action.splitEditorRight') end, opts)
     keymap({"n", "v"}, "<leader>el", function() vscode.action('workbench.action.focusLeftGroup') end, opts)
-    keymap({"n", "v"}, "<leader>er", function() vscode.action('workbench.action.focusRightGroup') end, opts)
+    keymap({"n", "v"}, "<leader>efr", function() vscode.action('workbench.action.focusRightGroup') end, opts)
 
 else
     -- ordinary Neovim
