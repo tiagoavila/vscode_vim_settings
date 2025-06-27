@@ -156,7 +156,7 @@
         "when": "inKeybindings && keybindingFocus"
     },
     {
-        "key": "alt+w p",
+        "key": "ctrl+w p",
         "command": "workbench.action.togglePanel"
     },
     {
