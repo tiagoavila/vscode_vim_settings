@@ -54,7 +54,7 @@ keymap('n', '<leader>d', '"_d', opts)
 keymap('v', '<leader>d', '"_d', opts)
 
 -- Go to first non-blank character of line
-keymap({ 'n', 'v' }, '<leader>h', '^', opts)
+keymap({ 'n', 'v' }, '<leader>h', '_', opts)
 
 -- Go to last non-blank character of line
 keymap({ 'n', 'v' }, '<leader>l', 'g_', opts)
@@ -69,6 +69,9 @@ keymap("v", ">", ">gv", opts)
 
 -- removes highlighting after escaping vim search
 keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
+
+keymap('n', '<C-d>', '<C-d>zz', opts)
+keymap('n', '<C-u>', '<C-u>zz', opts)
 
 -- Customized highlight yank
 vim.api.nvim_create_autocmd('TextYankPost', {
