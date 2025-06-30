@@ -10,14 +10,47 @@ vim.cmd [[
   Plug 'justinmk/vim-sneak'
   Plug 'tpope/vim-surround'
   Plug 'easymotion/vim-easymotion'
+  Plug 'numToStr/Comment.nvim'
   call plug#end()
 ]]
+
+-- Setup Comment.nvim plugin
+require('Comment').setup({
+    ---LHS of toggle mappings in NORMAL mode
+    toggler = {
+        ---Line-comment toggle keymap
+        line = 'gcc',
+        ---Block-comment toggle keymap
+        block = 'gbc',
+    },
+    extra = {
+        ---Add comment on the line above
+        above = 'gcO',
+        ---Add comment on the line below
+        below = 'gco',
+        ---Add comment at the end of line
+        eol = 'gcA',
+    },
+    -- ignores empty lines
+    ignore = '^$'
+})
 
 -- Set up vim options for case handling
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-vim.opt.formatoptions:remove({ 'o' })
+-- Remove auto-commenting
+vim.api.nvim_create_autocmd("BufEnter", {
+  callback = function()
+    -- Remove 'o' and 'r' from formatoptions to disable auto-commenting
+    -- o: automatically insert comment leader after 'o' or 'O'
+    -- r: automatically insert comment leader after hitting Enter
+    -- c: auto-wrap comments using textwidth
+    -- t: auto-wrap text using textwidth (keep this if you want text wrapping)
+    vim.opt.formatoptions:remove { "c", "r", "o" }
+  end,
+  desc = "Disable auto-commenting on new lines",
+})
 
 -- Enable line numbers
 vim.o.number = true
