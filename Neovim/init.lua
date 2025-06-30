@@ -11,6 +11,7 @@ vim.cmd [[
   Plug 'tpope/vim-surround'
   Plug 'easymotion/vim-easymotion'
   Plug 'numToStr/Comment.nvim'
+  Plug 'roobert/search-replace.nvim'
   call plug#end()
 ]]
 
@@ -34,6 +35,26 @@ require('Comment').setup({
     -- ignores empty lines
     ignore = '^$'
 })
+
+require("search-replace").setup({
+    default_replace_single_buffer_options = "gcI",
+    default_replace_multi_buffer_options = "egcI",
+})
+
+local opts_search_replace = {}
+vim.api.nvim_set_keymap("v", "<C-r>", "<CMD>SearchReplaceSingleBufferVisualSelection<CR>", opts_search_replace)
+vim.api.nvim_set_keymap("v", "<C-s>", "<CMD>SearchReplaceWithinVisualSelection<CR>", opts_search_replace)
+vim.api.nvim_set_keymap("v", "<C-b>", "<CMD>SearchReplaceWithinVisualSelectionCWord<CR>", opts_search_replace)
+
+vim.api.nvim_set_keymap("n", "<leader>rs", "<CMD>SearchReplaceSingleBufferSelections<CR>", opts_search_replace)
+vim.api.nvim_set_keymap("n", "<leader>ro", "<CMD>SearchReplaceSingleBufferOpen<CR>", opts_search_replace)
+vim.api.nvim_set_keymap("n", "<leader>rw", "<CMD>SearchReplaceSingleBufferCWord<CR>", opts_search_replace)
+vim.api.nvim_set_keymap("n", "<leader>rW", "<CMD>SearchReplaceSingleBufferCWORD<CR>", opts_search_replace)
+vim.api.nvim_set_keymap("n", "<leader>re", "<CMD>SearchReplaceSingleBufferCExpr<CR>", opts_search_replace)
+vim.api.nvim_set_keymap("n", "<leader>rf", "<CMD>SearchReplaceSingleBufferCFile<CR>", opts_search_replace)
+
+-- show the effects of a search / replace in a live preview window
+vim.o.inccommand = "split"
 
 -- Set up vim options for case handling
 vim.opt.ignorecase = true
@@ -79,12 +100,10 @@ keymap('n', '<leader>we', ':wa<CR>', opts)
 keymap('v', 'p', '"_dP', opts)
 
 -- Change without yanking to clipboard
-keymap('n', '<leader>c', '"_c', opts)
-keymap('v', '<leader>c', '"_c', opts)
+keymap({ 'n', 'v' }, '<leader>c', '"_c', opts)
 
 -- Delete without yanking to clipboard
-keymap('n', '<leader>d', '"_d', opts)
-keymap('v', '<leader>d', '"_d', opts)
+keymap({ 'n', 'v' }, '<leader>d', '"_d', opts)
 
 -- Go to first non-blank character of line
 keymap({ 'n', 'v' }, '<leader>h', '_', opts)
@@ -93,8 +112,7 @@ keymap({ 'n', 'v' }, '<leader>h', '_', opts)
 keymap({ 'n', 'v' }, '<leader>l', 'g_', opts)
 
 -- Toggle case of current character in normal and visual mode
-keymap('n', '<leader>u', '~', opts)
-keymap('v', '<leader>u', 'g~`', opts)
+keymap({ 'n', 'v' }, '<leader>u', '~', opts)
 
 -- better indent handling
 keymap("v", "<", "<gv", opts)
@@ -133,7 +151,6 @@ if vim.g.vscode then
     keymap({"n", "v"}, "gr", function() vscode.action('editor.action.referenceSearch.trigger') end, opts)
 
     keymap({"n", "v"}, '<leader>fd', function() vscode.action('editor.action.formatDocument') end, opts)
-    keymap({"n", "v"}, "<leader>q", function() vscode.action('workbench.action.closeActiveEditor')end, opts)
 
     -- Breakpoint operations (b prefix)
     keymap({"n", "v"}, "<leader>bt", function() vscode.action('editor.debug.action.toggleBreakpoint') end, opts)
@@ -141,9 +158,6 @@ if vim.g.vscode then
 
     -- View operations (v prefix)
     keymap({"n", "v"}, "<leader>vp", function() vscode.action('workbench.actions.view.problems') end, opts)
-    keymap({"n", "v"}, "<leader>vc", function() vscode.action('workbench.action.showCommands') end, opts)
-    keymap({"n", "v"}, "<leader>ve", function() vscode.action('workbench.view.explorer') end, opts)
-    keymap({"n", "v"}, "<leader>vt", function() vscode.action('workbench.action.togglePanel') end, opts)
     
     -- File operations (f prefix)
     keymap({"n", "v"}, "<leader>fs", function() vscode.action('workbench.action.findInFiles') end, opts)
@@ -160,13 +174,14 @@ if vim.g.vscode then
     keymap({"n", "v"}, "<leader>rr", function() vscode.action('editor.action.refactor') end, opts)
 
     -- Editor management (e prefix)
-    keymap({"n", "v"}, "<leader>er", function() vscode.action('workbench.action.splitEditorRight') end, opts)
-    keymap({"n", "v"}, "<leader>el", function() vscode.action('workbench.action.focusLeftGroup') end, opts)
+    keymap({"n", "v"}, "<leader>esr", function() vscode.action('workbench.action.splitEditorRight') end, opts)
+    keymap({"n", "v"}, "<leader>esl", function() vscode.action('workbench.action.focusLeftGroup') end, opts)
+    keymap({"n", "v"}, "<leader>emr", function() vscode.action('workbench.action.moveEditorToRightGroup') end, opts)
+    keymap({"n", "v"}, "<leader>eml", function() vscode.action('workbench.action.moveEditorToLeftGroup') end, opts)
     keymap({"n", "v"}, "<leader>efr", function() vscode.action('workbench.action.focusRightGroup') end, opts)
-
+    keymap({"n", "v"}, "<leader>efl", function() vscode.action('workbench.action.focusLeftGroup') end, opts)
 else
     -- ordinary Neovim
-
     keymap('i', 'jj', '<Esc>', opts)
     keymap('i', 'jk', '<Esc>:w<CR>', opts)
 end
