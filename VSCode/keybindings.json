@@ -1,6 +1,16 @@
 // Place your key bindings in this file to override the defaults
 [
     {
+        "key": "ctrl+i ctrl+m",
+        "command": "workbench.action.tasks.runTask",
+        "args": "iex -S mix"
+    },
+    {
+        "key": "ctrl+i ctrl+p",
+        "command": "workbench.action.tasks.runTask",
+        "args": "iex -S mix phx.server"
+    },
+    {
         "key": "ctrl+k ctrl+c",
         "command": "-editor.action.addCommentLine",
         "when": "editorTextFocus && !editorReadonly"
@@ -75,7 +85,7 @@
         "command": "-workbench.action.closeActiveEditor"
     },
     {
-        "key": "ctrl+w o",
+        "key": "ctrl+w ctrl+o",
         "command": "workbench.action.closeOtherEditors"
     },
     {
@@ -83,7 +93,7 @@
         "command": "-workbench.action.closeUnmodifiedEditors"
     },
     {
-        "key": "ctrl+w s",
+        "key": "ctrl+w ctrl+s",
         "command": "workbench.action.closeUnmodifiedEditors"
     },
     {
@@ -95,7 +105,7 @@
         "command": "-workbench.action.closeAllGroups"
     },
     {
-        "key": "ctrl+w a",
+        "key": "ctrl+w ctrl+a",
         "command": "workbench.action.closeEditorsInGroup"
     },
     {
@@ -112,7 +122,7 @@
         "command": "workbench.action.splitEditorToRightGroup"
     },
     {
-        "key": "alt+i t",
+        "key": "ctrl+g ctrl+t",
         "command": "github.copilot.completions.toggle"
     },
     {
@@ -128,7 +138,7 @@
         "command": "explorer.newFolder"
     },
     {
-        "key": "alt+w c",
+        "key": "alt+w i",
         "command": "workbench.panel.chat",
         "when": "workbench.panel.chat.view.copilot.active"
     },
@@ -164,102 +174,7 @@
         "command": "-workbench.action.togglePanel"
     },
     {
-        "key": "ctrl+i ctrl+n",
-        "command": "workbench.action.chat.newChat"
-    },
-    {
-        "key": "ctrl+i",
-        "command": "-workbench.action.chat.startVoiceChat",
-        "when": "chatIsEnabled && hasSpeechProvider && inChatInput && !chatSessionRequestInProgress && !editorFocus && !notebookEditorFocused && !scopedVoiceChatGettingReady && !speechToTextInProgress || chatIsEnabled && hasSpeechProvider && inlineChatFocused && !chatSessionRequestInProgress && !editorFocus && !notebookEditorFocused && !scopedVoiceChatGettingReady && !speechToTextInProgress"
-    },
-    {
-        "key": "ctrl+i",
-        "command": "-workbench.action.chat.stopListeningAndSubmit",
-        "when": "inChatInput && voiceChatInProgress && scopedVoiceChatInProgress == 'editor' || inChatInput && voiceChatInProgress && scopedVoiceChatInProgress == 'inline' || inChatInput && voiceChatInProgress && scopedVoiceChatInProgress == 'quick' || inChatInput && voiceChatInProgress && scopedVoiceChatInProgress == 'view' || inlineChatFocused && voiceChatInProgress && scopedVoiceChatInProgress == 'editor' || inlineChatFocused && voiceChatInProgress && scopedVoiceChatInProgress == 'inline' || inlineChatFocused && voiceChatInProgress && scopedVoiceChatInProgress == 'quick' || inlineChatFocused && voiceChatInProgress && scopedVoiceChatInProgress == 'view'"
-    },
-    {
-        "key": "ctrl+i",
-        "command": "-inlineChat2.close",
-        "when": "inlineChatHasEditsAgent && inlineChatVisible && !chatEdits.isRequestInProgress && chatEdits.requestCount == '0' || inlineChatHasEditsAgent && inlineChatVisible && !chatEdits.hasEditorModifications && !chatEdits.isRequestInProgress && chatEdits.requestCount == '0'"
-    },
-    {
-        "key": "ctrl+i",
-        "command": "-workbench.action.terminal.suggestToggleDetails",
-        "when": "simpleSuggestWidgetHasFocusedSuggestion && terminalFocus && terminalHasBeenCreated && terminalIsOpen && terminalSuggestWidgetVisible || simpleSuggestWidgetHasFocusedSuggestion && terminalFocus && terminalIsOpen && terminalProcessSupported && terminalSuggestWidgetVisible"
-    },
-    {
-        "key": "ctrl+i",
-        "command": "-inlineChat.start",
-        "when": "editorFocus && inlineChatHasEditsAgent && inlineChatPossible && !editorReadonly && !editorSimpleInput || editorFocus && inlineChatHasProvider && inlineChatPossible && !editorReadonly && !editorSimpleInput"
-    },
-    {
-        "key": "ctrl+i",
-        "command": "-inlineChat.startWithCurrentLine",
-        "when": "inlineChatHasProvider && inlineChatShowingHint && !editorReadonly && !inlineChatVisible"
-    },
-    {
-        "key": "ctrl+i",
-        "command": "-workbench.action.terminal.chat.start",
-        "when": "chatIsEnabled && terminalChatAgentRegistered && terminalFocusInAny && terminalHasBeenCreated || chatIsEnabled && terminalChatAgentRegistered && terminalFocusInAny && terminalProcessSupported"
-    },
-    {
-        "key": "ctrl+i",
-        "command": "-inlineChat2.reveal",
-        "when": "inlineChatHasEditsAgent && !chatEdits.isGlobalEditingSession && chatEdits.requestCount >= 1"
-    },
-    {
-        "key": "ctrl+i",
-        "command": "-vscode-neovim.send",
-        "when": "editorTextFocus && neovim.ctrlKeysNormal.i && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
-    },
-    {
-        "key": "ctrl+i",
-        "command": "-vscode-neovim.send",
-        "when": "editorTextFocus && neovim.ctrlKeysInsert.i && neovim.init && neovim.mode == 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
-    },
-    {
-        "key": "ctrl+i",
-        "command": "-search.action.searchWithAI",
-        "when": "hasAIResultProviderKey && searchViewletFocus"
-    },
-    {
-        "key": "ctrl+i",
-        "command": "-editor.action.triggerSuggest",
-        "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly && !suggestWidgetVisible"
-    },
-    {
-        "key": "ctrl+i",
-        "command": "-focusSuggestion",
-        "when": "suggestWidgetVisible && textInputFocus && !suggestWidgetHasFocusedSuggestion"
-    },
-    {
-        "key": "ctrl+i",
-        "command": "-inlineChat.holdForSpeech",
-        "when": "hasSpeechProvider && inlineChatVisible && textInputFocus"
-    },
-    {
-        "key": "ctrl+i",
-        "command": "-notebook.cell.chat.start",
-        "when": "config.notebook.experimental.cellChat && notebookChatAgentRegistered && notebookEditable && notebookEditorFocused && !inputFocus || config.notebook.experimental.generate && notebookChatAgentRegistered && notebookEditable && notebookEditorFocused && !inputFocus"
-    },
-    {
-        "key": "ctrl+i",
-        "command": "-toggleSuggestionDetails",
-        "when": "suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && textInputFocus"
-    },
-    {
-        "key": "ctrl+i",
-        "command": "-workbench.action.chat.holdToVoiceChatInChatView",
-        "when": "chatIsEnabled && hasSpeechProvider && !chatSessionRequestInProgress && !editorFocus && !inChatInput && !inlineChatFocused && !notebookEditorFocused && !searchViewletFocus"
-    },
-    {
-        "key": "ctrl+i ctrl+c",
-        "command": "workbench.action.chat.attachContext",
-        "when": "inChatInput && chatLocation == 'panel'"
-    },
-    {
-        "key": "ctrl+/",
-        "command": "-workbench.action.chat.attachContext",
-        "when": "inChatInput && chatLocation == 'panel'"
+        "key": "ctrl+t ctrl+e",
+        "command": "openInTerminal"
     },
 ]
