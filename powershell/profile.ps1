@@ -134,26 +134,26 @@ Function RunEcommAdmin()
 }
 Set-Alias -Name reca -Value RunEcommAdmin
 
+$processDictionary = @{
+    "api" = "Endor.Api.Web"
+    "auth" = "Endor.Auth.Web"
+    "boardapi" = "Endor.BoardApi.Web"
+    "comms" = "Endor.Comm.Web"
+    "integrations" = "Endor.Integrations.Web"
+    "logging" = "Endor.Logging.Web"
+    "reporting" = "Endor.Reporting.Web"
+    "rtc" = "Endor.RTC.Core.Web"
+    "rtcpeerhost" = "Endor.RTC.PeerHost.Web"
+    "search" = "Endor.Search.Web"
+    "tasks" = "Endor.Tasks.Web"
+    "ape" = "APE"
+    "ate" = "ATE"
+}
+
 function CheckEndorProcessesRunning {
     param (
         [switch]$all
     )
-
-    # Define the full dictionary of process names
-    $processDictionary = @{
-        "api"         = "Endor.Api.Web"
-        "auth"        = "Endor.Auth.Web"
-        "boardapi"    = "Endor.BoardApi.Web"
-        "comms"       = "Endor.Comm.Web"
-        "integrations"= "Endor.Integrations.Web"
-        "logging"     = "Endor.Logging.Web"
-        "reporting"   = "Endor.Reporting.Web"
-        "rtc"         = "Endor.RTC.Core.Web"
-        "rtcpeerhost" = "Endor.RTC.PeerHost.Web"
-        "search"      = "Endor.Search.Web"
-        "tasks"       = "Endor.Tasks.Web"
-        "ape"         = "APE"
-    }
 
     # Define the default list of keys to check when -all is not used
     $defaultKeys = @("api", "auth", "integrations", "rtc", "rtcpeerhost", "search")
@@ -187,21 +187,6 @@ Set-Alias -Name cepr -Value CheckEndorProcessesRunning
 
 Function KillProcessByName([string]$processName = "")
 {
-    $processDictionary = @{
-        "api" = "Endor.Api.Web"
-        "auth" = "Endor.Auth.Web"
-        "boardapi" = "Endor.BoardApi.Web"
-        "comms" = "Endor.Comm.Web"
-        "integrations" = "Endor.Integrations.Web"
-        "logging" = "Endor.Logging.Web"
-        "reporting" = "Endor.Reporting.Web"
-        "rtc" = "Endor.RTC.Core.Web"
-        "rtcpeerhost" = "Endor.RTC.PeerHost.Web"
-        "search" = "Endor.Search.Web"
-        "tasks" = "Endor.Tasks.Web"
-        "ape" = "APE"
-    }
-
     # If no process name provided, kill all processes in the dictionary
     if ([string]::IsNullOrEmpty($processName)) {
         Write-Host -ForegroundColor Yellow "Killing all Endor processes"
@@ -241,7 +226,7 @@ Set-Alias -Name kp -Value KillProcessByName
 
 Function OpenInRider([string]$projectName = "")
 {
-    $projectPaths = @{
+    $projectSolutions = @{
         "ape"           = "D:\Corebridge\repos\Endor\end-ape\APE.sln"
         "api"           = "D:\Corebridge\repos\Endor\end-api\Endor.Api.sln"
         "ate"           = "D:\Corebridge\repos\Endor\end-ate\ATE.sln"
@@ -266,7 +251,7 @@ Function OpenInRider([string]$projectName = "")
 
 	Write-Host -ForegroundColor Blue "Opening '$projectName' in Rider"
 	
-    $solutionPath = $projectPaths[$projectName]
+    $solutionPath = $projectSolutions[$projectName]
     rider64 $solutionPath
 }
 
