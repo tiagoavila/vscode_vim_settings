@@ -1,3 +1,5 @@
+-- require("config.lazy")
+
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
@@ -7,11 +9,11 @@ vim.g.maplocalleader = " "
 
 vim.cmd [[
   call plug#begin()
-  Plug 'justinmk/vim-sneak'
-  Plug 'tpope/vim-surround'
-  Plug 'easymotion/vim-easymotion'
-  Plug 'numToStr/Comment.nvim'
-  Plug 'roobert/search-replace.nvim'
+    Plug 'justinmk/vim-sneak'
+    Plug 'tpope/vim-surround'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'numToStr/Comment.nvim'
+    Plug 'roobert/search-replace.nvim'
   call plug#end()
 ]]
 
@@ -41,6 +43,7 @@ require("search-replace").setup({
     default_replace_multi_buffer_options = "egcI",
 })
 
+-- Mappings for the search-replace plugin
 local opts_search_replace = {}
 vim.api.nvim_set_keymap("v", "<C-r>", "<CMD>SearchReplaceSingleBufferVisualSelection<CR>", opts_search_replace)
 vim.api.nvim_set_keymap("v", "<C-s>", "<CMD>SearchReplaceWithinVisualSelection<CR>", opts_search_replace)
@@ -123,6 +126,12 @@ keymap("n", "<Esc>", "<Esc>:noh<CR>", opts)
 
 keymap('n', '<C-d>', '<C-d>zz', opts)
 keymap('n', '<C-u>', '<C-u>zz', opts)
+
+-- move text up and down
+keymap("v", "J", ":m .+1<CR>==", opts)
+keymap("v", "K", ":m .-2<CR>==", opts)
+keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
+keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 -- Customized highlight yank
 vim.api.nvim_create_autocmd('TextYankPost', {
