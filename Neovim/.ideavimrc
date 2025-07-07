@@ -27,10 +27,14 @@ Plug 'machakann/vim-highlightedyank'
 " Commentary plugin
 Plug 'tpope/vim-commentary'
 
+Plug 'tpope/vim-surround'
+Plug 'justinmk/vim-sneak'
+Plug 'easymotion/vim-easymotion'
+
 nmap gd :action GotoDeclaration<CR>
-map <leader>ff :action ReformatCode<CR>
-map <leader>ai :action ShowIntentionActions<CR>
-nnoremap gb :action ToggleLineBreakpoint<CR>
+map <leader>fd :action ReformatCode<CR>
+map <leader>ff :action ShowIntentionActions<CR>
+nnoremap <leader>bt :action ToggleLineBreakpoint<CR>
 
 "" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 "" Map \r to the Reformat Code action
@@ -41,7 +45,3 @@ nnoremap gb :action ToggleLineBreakpoint<CR>
 
 "" Map \b to toggle the breakpoint on the current line
 "map \b <Action>(ToggleLineBreakpoint)
-
-Plug 'tpope/vim-surround'
-set sneak
-set easymotion
