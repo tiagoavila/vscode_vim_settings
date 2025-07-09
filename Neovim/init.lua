@@ -165,6 +165,10 @@ if vim.g.vscode then
     keymap({"n", "v"}, "<leader>bt", function() vscode.action('editor.debug.action.toggleBreakpoint') end, opts)
     keymap({"n", "v"}, "<leader>br", function() vscode.action('workbench.debug.viewlet.action.removeAllBreakpoints') end, opts)
 
+    -- Debug operations (d prefix)
+    keymap({"n", "v"}, "<leader>ds", function() vscode.action('workbench.action.debug.start') end, opts)
+    keymap({"n", "v"}, "<leader>dw", function() vscode.action('editor.debug.action.selectionToWatch') end, opts)
+
     -- View operations (v prefix)
     keymap({"n", "v"}, "<leader>vp", function() vscode.action('workbench.actions.view.problems') end, opts)
     
