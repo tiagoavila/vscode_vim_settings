@@ -8,18 +8,14 @@ set hlsearch
 " Set relative and fixed row number
 set number relativenumber
 
+set clipboard=unnamedplus
+
 " Set a leader key
 nnoremap <SPACE> <Nop>
 let mapleader=" "
 
-" Remap <Leader>s to save the file
-nnoremap <leader>s :w<CR>
+" Remap <Leader>w and <Leader>we to save the files
 nnoremap <leader>w :w<CR>
-
-" Remap <Leader>sa to save all files
-nnoremap <leader>sa :wa<CR>
-
-" Remap <Leader>we to save all files
 nnoremap <leader>we :wa<CR>
 
 " Custom mapping to replace all occurrences of the word under the cursor
@@ -27,9 +23,6 @@ nnoremap <leader>r :%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>
 
 " Custom mapping to replace completely all occurrences of the word under the cursor, this one starts with an empty replacement
 nnoremap <leader>rt :%s/\<<C-r><C-w>\>//g<Left><Left>
-
-" Custom Mapping to insert text at the end of word under the cursor
-nnoremap <leader>e ea
 
 " paste text without overwriting the clipboard
 xnoremap <leader>p "\"_dP"
@@ -45,6 +38,9 @@ vnoremap <leader>d "_d
 " Mapping to go to the first non-blank character of the line
 nnoremap <leader>h ^
 
+nnoremap <leader>l $
+vnoremap <leader>l $
+
 "Toggle the case of the letter under the cursor in normal mode.
 nnoremap <leader>u ~
 
@@ -60,9 +56,6 @@ vnoremap <leader>pe "+p
 
 nnoremap <leader>x *``cgn
 
-" Close active tab
-nnoremap <leader>q :tabclose<CR>
-
 " Map 'jj' to exit insert mode
 inoremap jj <Esc>
 
@@ -70,4 +63,15 @@ inoremap jj <Esc>
 inoremap jk <Esc>:w<CR>
 
 " Map leader o to go back in jumps
-nnoremap <leader>o <C-o>
+"nnoremap <leader>o <C-o>
+
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+" Move current line or selected lines up with K
+nnoremap K :m .-2<CR>==
+vnoremap K :m '<-2<CR>gv=gv
+
+" Move current line or selected lines down with J
+nnoremap J :m .+1<CR>==
+vnoremap J :m '>+1<CR>gv=gv
