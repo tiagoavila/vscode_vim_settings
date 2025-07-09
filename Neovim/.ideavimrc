@@ -19,6 +19,7 @@ set incsearch
 map Q gq
 
 set clipboard+=unnamed,unnamedplus
+set functiontextobj
 
 " --- Enable IdeaVim plugins https://jb.gg/ideavim-plugins
 
@@ -32,9 +33,15 @@ Plug 'justinmk/vim-sneak'
 Plug 'easymotion/vim-easymotion'
 
 nmap gd :action GotoDeclaration<CR>
+nnoremap gr :action FindUsages<CR>
+
 map <leader>fd :action ReformatCode<CR>
 map <leader>ff :action ShowIntentionActions<CR>
+
 nnoremap <leader>bt :action ToggleLineBreakpoint<CR>
+
+nnoremap <leader>rn :action RenameElement<CR>
+nnoremap <leader>rr :action Refactorings.QuickListPopupAction<CR>
 
 "" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 "" Map \r to the Reformat Code action
