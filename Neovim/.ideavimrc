@@ -34,6 +34,7 @@ Plug 'easymotion/vim-easymotion'
 
 nmap gd :action GotoDeclaration<CR>
 nnoremap gr :action FindUsages<CR>
+nmap gi :action ReSharperGotoImplementation<CR>
 
 map <leader>fd :action ReformatCode<CR>
 map <leader>ff :action ShowIntentionActions<CR>
