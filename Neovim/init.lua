@@ -61,7 +61,7 @@ vim.o.inccommand = "split"
 
 -- Set up vim options for case handling
 vim.opt.ignorecase = true
-vim.opt.smartcase = true
+vim.opt.smartcase = true -- If searched 'abc' matches abc, Abc, ABC, etc. - if searched 'Abc', matches Abc (case-sensitive)
 
 -- Remove auto-commenting
 vim.api.nvim_create_autocmd("BufEnter", {
