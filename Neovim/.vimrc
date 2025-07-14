@@ -17,12 +17,10 @@ let mapleader=" "
 " Remap <Leader>w and <Leader>we to save the files
 nnoremap <leader>w :w<CR>
 nnoremap <leader>we :wa<CR>
-
-" Custom mapping to replace all occurrences of the word under the cursor
-nnoremap <leader>r :%s/\<<C-r><C-w>\>/<C-r><C-w>/g<Left><Left>
-
+
 " Custom mapping to replace completely all occurrences of the word under the cursor, this one starts with an empty replacement
-nnoremap <leader>rt :%s/\<<C-r><C-w>\>//g<Left><Left>
+nnoremap <leader>rw :%s/\<<C-r><C-w>\>//g<Left><Left>
+xnoremap <leader>rs :s///gc<Left><Left><Left><Left>
 
 " paste text without overwriting the clipboard
 xnoremap <leader>p "\"_dP"
@@ -75,3 +73,6 @@ vnoremap K :m '<-2<CR>gv=gv
 " Move current line or selected lines down with J
 nnoremap J :m .+1<CR>==
 vnoremap J :m '>+1<CR>gv=gv
+
+-- enter visual block mode
+nnoremap <leader>vb <C-v>
