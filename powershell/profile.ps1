@@ -15,11 +15,30 @@ Set-Alias -Name un16 -Value UseNode16
 Function UseNode20 { nvm use 20.13.1 }
 Set-Alias -Name un20 -Value UseNode20
 
+$endorRootFolder = "D:\CoreBridge\repos\Endor"
+$ecommRootFolder = "D:\Corebridge\repos\Ecomm"
+
+$processDictionary = @{
+    "api" = "Endor.Api.Web"
+    "auth" = "Endor.Auth.Web"
+    "boardapi" = "Endor.BoardApi.Web"
+    "comms" = "Endor.Comm.Web"
+    "integrations" = "Endor.Integrations.Web"
+    "logging" = "Endor.Logging.Web"
+    "reporting" = "Endor.Reporting.Web"
+    "rtc" = "Endor.RTC.Core.Web"
+    "rtcpeerhost" = "Endor.RTC.PeerHost.Web"
+    "search" = "Endor.Search.Web"
+    "tasks" = "Endor.Tasks.Web"
+    "ape" = "APE"
+    "ate" = "ATE"
+}
+
 Function CheckoutAndRunEndor([string]$branchID, [string]$project, [switch]$all) 
 { 
 	write-host -ForegroundColor green "Checkout and Run Endor on Feature Branch END-$branchID"
 	D:
-	cd D:\CoreBridge\repos\Endor
+	cd $endorRootFolder
 	
 	# Build the command string
     $command = "py cb.py -c END-$branchID"
@@ -47,7 +66,7 @@ Function CheckoutEndorFeatureBranch([string]$branchID)
 { 
 	write-host -ForegroundColor green "Checkout Endor on Feature Branch END-$branchID"
 	D:
-	cd D:\CoreBridge\repos\Endor
+	cd $endorRootFolder
 	py cb.py -c END-$branchID
 }
 Set-Alias -Name cefb -Value CheckoutEndorFeatureBranch
@@ -56,7 +75,7 @@ Function CheckoutAndRunEndorDev([string]$project = "")
 { 
 	write-host -ForegroundColor blue "Checkout and Run Endor on dev branch"
 	D:
-	cd D:\CoreBridge\repos\Endor
+	cd $endorRootFolder
 	if (-not [string]::IsNullOrWhiteSpace($project)) {
         py cb.py -c dev -s $project
     } else {
@@ -68,7 +87,7 @@ Set-Alias -Name cred -Value CheckoutAndRunEndorDev
 Function RunEndor([string]$project = "") 
 { 
     D:
-    cd D:\CoreBridge\repos\Endor
+    cd $endorRootFolder
     if (-not [string]::IsNullOrWhiteSpace($project)) {
 		Write-Host -ForegroundColor Green "Run $project"
         py cb.py -s $project
@@ -83,7 +102,7 @@ Function ChangeToEndorDirectory([string]$projectName)
 { 
 	write-host -ForegroundColor green "Changed to Endor directory"
 	D:
-	cd D:\CoreBridge\repos\Endor
+	cd $endorRootFolder
 	
 	$folderDictionary = @{
         "api"              = "end-api"
@@ -105,6 +124,7 @@ Function ChangeToEndorDirectory([string]$projectName)
         "documentreports"  = "end-documentreports"
         "nglibrary"        = "end-nglibrary"
         "web"              = "end-web"
+        "apefrontend"      = "end-ape\APE\Frontend"
     }
 	
 	if ($projectName -and $folderDictionary.ContainsKey($projectName)) {
@@ -133,22 +153,6 @@ Function RunEcommAdmin()
 	npm start
 }
 Set-Alias -Name reca -Value RunEcommAdmin
-
-$processDictionary = @{
-    "api" = "Endor.Api.Web"
-    "auth" = "Endor.Auth.Web"
-    "boardapi" = "Endor.BoardApi.Web"
-    "comms" = "Endor.Comm.Web"
-    "integrations" = "Endor.Integrations.Web"
-    "logging" = "Endor.Logging.Web"
-    "reporting" = "Endor.Reporting.Web"
-    "rtc" = "Endor.RTC.Core.Web"
-    "rtcpeerhost" = "Endor.RTC.PeerHost.Web"
-    "search" = "Endor.Search.Web"
-    "tasks" = "Endor.Tasks.Web"
-    "ape" = "APE"
-    "ate" = "ATE"
-}
 
 function CheckEndorProcessesRunning {
     param (
@@ -227,20 +231,22 @@ Set-Alias -Name kp -Value KillProcessByName
 Function OpenInRider([string]$projectName = "")
 {
     $projectSolutions = @{
-        "ape"           = "D:\Corebridge\repos\Endor\end-ape\APE.sln"
-        "api"           = "D:\Corebridge\repos\Endor\end-api\Endor.Api.sln"
-        "ate"           = "D:\Corebridge\repos\Endor\end-ate\ATE.sln"
-        "auth"          = "D:\Corebridge\repos\Endor\end-auth\Endor.Auth.sln"
-        "boardapi"      = "D:\Corebridge\repos\Endor\end-boardapi\Endor.BoardApi.sln"
-        "common-kernel" = "D:\Corebridge\repos\Endor\end-common\Endor.Common.Kernel.sln"
-        "common-level1" = "D:\Corebridge\repos\Endor\end-common\Endor.Common.Level1.sln"
-        "common-level2" = "D:\Corebridge\repos\Endor\end-common\Endor.Common.Level2.sln"
-        "comms"         = "D:\Corebridge\repos\Endor\end-comms\Endor.Comm.sln"
-        "integrations"  = "D:\Corebridge\repos\Endor\end-integrations\Endor.Integrations.sln"
-        "rtc"           = "D:\Corebridge\repos\Endor\end-rtc\END-RTC-Core.sln"
-        "rtcpeerhost"   = "D:\Corebridge\repos\Endor\end-rtcpeerhost\END-RTCPeerHost.sln"
-        "search"        = "D:\Corebridge\repos\Endor\end-search-core\Endor.Search.sln"
-        "tasks"         = "D:\Corebridge\repos\Endor\end-tasks\Endor.Tasks.sln"
+        "ape"           = "$endorRootFolder\end-ape\APE.sln"
+        "api"           = "$endorRootFolder\end-api\Endor.Api.sln"
+        "ate"           = "$endorRootFolder\end-ate\ATE.sln"
+        "auth"          = "$endorRootFolder\end-auth\Endor.Auth.sln"
+        "boardapi"      = "$endorRootFolder\end-boardapi\Endor.BoardApi.sln"
+        "common-kernel" = "$endorRootFolder\end-common\Endor.Common.Kernel.sln"
+        "common-level1" = "$endorRootFolder\end-common\Endor.Common.Level1.sln"
+        "common-level2" = "$endorRootFolder\end-common\Endor.Common.Level2.sln"
+        "comms"         = "$endorRootFolder\end-comms\Endor.Comm.sln"
+        "integrations"  = "$endorRootFolder\end-integrations\Endor.Integrations.sln"
+        "rtc"           = "$endorRootFolder\end-rtc\END-RTC-Core.sln"
+        "rtcpeerhost"   = "$endorRootFolder\end-rtcpeerhost\END-RTCPeerHost.sln"
+        "search"        = "$endorRootFolder\end-search-core\Endor.Search.sln"
+        "tasks"         = "$endorRootFolder\end-tasks\Endor.Tasks.sln"
+        "ec"            = "$ecommRootFolder\ecomm-api-storefront\trunk\WebApps\Znode\Projects\Znode.Multifront.sln"
+        "cbms"          = "$ecommRootFolder\corebridgefiles\trunk\WebApps\ManagementSystem\Management System.sln"
     }
 
     # Check if the string parameter is null, empty, or whitespace
@@ -261,22 +267,25 @@ Set-Alias -Name oir -Value OpenInRider
 Function OpenInCursor([string]$projectName = "")
 {
     $projectPaths = @{
-		"apefrontend"   = "D:\Corebridge\repos\Endor\end-ape\APE\Frontend"
-		"ape"           = "D:\Corebridge\repos\Endor\end-ape\APE"
-        "api"           = "D:\Corebridge\repos\Endor\end-api"
-        "ate"           = "D:\Corebridge\repos\Endor\end-ate"
-        "auth"          = "D:\Corebridge\repos\Endor\end-auth"
-        "boardapi"      = "D:\Corebridge\repos\Endor\end-boardapi"
-        "common-kernel" = "D:\Corebridge\repos\Endor\end-common"
-        "common-level1" = "D:\Corebridge\repos\Endor\end-common"
-        "common-level2" = "D:\Corebridge\repos\Endor\end-common"
-        "comms"         = "D:\Corebridge\repos\Endor\end-comms"
-        "integrations"  = "D:\Corebridge\repos\Endor\end-integrations"
-        "rtc"           = "D:\Corebridge\repos\Endor\end-rtc"
-        "rtcpeerhost"   = "D:\Corebridge\repos\Endor\end-rtcpeerhost"
-        "search"        = "D:\Corebridge\repos\Endor\end-search-core"
-        "tasks"         = "D:\Corebridge\repos\Endor\end-tasks"
-        "web"           = "D:\Corebridge\repos\Endor\end-web"
+		"apefrontend"   = "$endorRootFolder\end-ape\APE\Frontend"
+		"ape"           = "$endorRootFolder\end-ape\APE"
+        "api"           = "$endorRootFolder\end-api"
+        "ate"           = "$endorRootFolder\end-ate"
+        "auth"          = "$endorRootFolder\end-auth"
+        "boardapi"      = "$endorRootFolder\end-boardapi"
+        "common-kernel" = "$endorRootFolder\end-common"
+        "common-level1" = "$endorRootFolder\end-common"
+        "common-level2" = "$endorRootFolder\end-common"
+        "comms"         = "$endorRootFolder\end-comms"
+        "integrations"  = "$endorRootFolder\end-integrations"
+        "rtc"           = "$endorRootFolder\end-rtc"
+        "rtcpeerhost"   = "$endorRootFolder\end-rtcpeerhost"
+        "search"        = "$endorRootFolder\end-search-core"
+        "tasks"         = "$endorRootFolder\end-tasks"
+        "web"           = "$endorRootFolder\end-web"
+        "ec"            = "$ecommRootFolder\ecomm-api-storefront\trunk\WebApps\Znode\Projects"
+        "eca"           = "$ecommRootFolder\ecomm-admin"
+        "cbms"          = "$ecommRootFolder\corebridgefiles\trunk\WebApps\ManagementSystem"
     }
 
     # Check if the string parameter is null, empty, or whitespace
