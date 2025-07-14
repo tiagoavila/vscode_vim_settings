@@ -45,7 +45,6 @@ require("search-replace").setup({
 
 -- Mappings for the search-replace plugin
 local opts_search_replace = {}
-vim.api.nvim_set_keymap("v", "<C-r>", "<CMD>SearchReplaceSingleBufferVisualSelection<CR>", opts_search_replace)
 vim.api.nvim_set_keymap("v", "<C-s>", "<CMD>SearchReplaceWithinVisualSelection<CR>", opts_search_replace)
 vim.api.nvim_set_keymap("v", "<C-b>", "<CMD>SearchReplaceWithinVisualSelectionCWord<CR>", opts_search_replace)
 
@@ -132,6 +131,9 @@ keymap({ 'n', 'v' }, "J", ":m .+1<CR>==", opts)
 keymap({ 'n', 'v' }, "K", ":m .-2<CR>==", opts)
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
+
+-- enter visual block mode
+keymap("n", "<leader>vb", "<C-v>", { noremap = true, silent = true })
 
 -- Customized highlight yank
 vim.api.nvim_create_autocmd('TextYankPost', {
