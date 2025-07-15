@@ -399,7 +399,7 @@ end
 Set-Alias -Name cemtf -Value CreateElixirModuleAndTestFiles
 
 function EditNvimConfig {
-    $configPath = "$env:LOCALAPPDATA\nvim\init.lua"
+    $configPath = "D:\vscode_vim_settings\Neovim\init.lua"
     
     # Check if the config file exists, if not create the directory and file
     if (!(Test-Path $configPath)) {
@@ -416,6 +416,24 @@ function EditNvimConfig {
 # Create an alias for the function
 Set-Alias -Name envc -Value EditNvimConfig
 
+function EditVimConfig {
+    $configPath = "D:\vscode_vim_settings\Neovim\.vimrc"
+    
+    # Check if the config file exists, if not create the directory and file
+    if (!(Test-Path $configPath)) {
+        $configDir = Split-Path $configPath -Parent
+        if (!(Test-Path $configDir)) {
+            New-Item -ItemType Directory -Path $configDir -Force
+        }
+        New-Item -ItemType File -Path $configPath -Force
+    }
+    
+    nvim $configPath
+}
+
+# Create an alias for the function
+Set-Alias -Name evc -Value EditVimConfig
+
 function RemoveFolder {
     param (
         [Parameter(Mandatory=$true)]
@@ -431,4 +449,13 @@ function RemoveFolder {
 
 Set-Alias -Name rmdir -Value RemoveFolder 
 
+function ApplyStash() {
+    D:
+    cd $ecommRootFolder\corebridgefiles\trunk\WebApps\ManagementSystem
+    git stash apply --index $(git stash list | grep ": Local$" | head -1 | cut -d: -f1)
+}
+
+Set-Alias -Name ascbms -Value ApplyStash 
+
 Invoke-Expression (&starship init powershell)
+
