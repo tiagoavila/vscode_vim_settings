@@ -399,7 +399,7 @@ end
 Set-Alias -Name cemtf -Value CreateElixirModuleAndTestFiles
 
 function EditNvimConfig {
-    $configPath = "D:\vscode_vim_settings\Neovim\init.lua"
+    $configPath = "D:\vscode_vim_settings\nvim\init.lua"
     
     # Check if the config file exists, if not create the directory and file
     if (!(Test-Path $configPath)) {
@@ -417,7 +417,7 @@ function EditNvimConfig {
 Set-Alias -Name envc -Value EditNvimConfig
 
 function EditVimConfig {
-    $configPath = "D:\vscode_vim_settings\Neovim\.vimrc"
+    $configPath = "D:\vscode_vim_settings\vim\.vimrc"
     
     # Check if the config file exists, if not create the directory and file
     if (!(Test-Path $configPath)) {

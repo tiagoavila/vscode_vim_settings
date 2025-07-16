@@ -14,6 +14,24 @@ vim.cmd [[
     Plug 'easymotion/vim-easymotion'
     Plug 'numToStr/Comment.nvim'
     Plug 'roobert/search-replace.nvim'
+]]
+
+if not vim.g.vscode then
+    vim.cmd [[
+        " File Explorer
+        Plug 'nvim-tree/nvim-tree.lua'
+        Plug 'nvim-tree/nvim-web-devicons'  " optional icons
+
+        " Harpoon
+        Plug 'ThePrimeagen/harpoon', { 'branch': 'harpoon2' }
+
+        " Fuzzy Finder
+        Plug 'nvim-telescope/telescope.nvim'
+        Plug 'nvim-lua/plenary.nvim'
+    ]]
+end
+
+vim.cmd [[
   call plug#end()
 ]]
 
@@ -199,4 +217,63 @@ else
     -- ordinary Neovim
     keymap('i', 'jj', '<Esc>', opts)
     keymap('i', 'jk', '<Esc>:w<CR>', opts)
+
+    -- nvim-tree setup
+    -- disable netrw at the very start of your init.lua
+    vim.g.loaded_netrw = 1
+    vim.g.loaded_netrwPlugin = 1
+
+    -- optionally enable 24-bit colour
+    vim.opt.termguicolors = true
+
+    -- empty setup using defaults
+    require("nvim-tree").setup()
+
+    -- OR setup with some options
+    require("nvim-tree").setup({
+        update_cwd = true,
+        respect_buf_cwd = true,
+        sync_root_with_cwd = true,
+        sort = {
+            sorter = "case_sensitive",
+        },
+        view = {
+            width = 30,
+        },
+        renderer = {
+            group_empty = true,
+        },
+        filters = {
+            dotfiles = true,
+        },
+    })
+
+    -- nvim-tree Mappings (f prefix for file explorer)
+    vim.keymap.set("n", "<leader>fe", "<cmd>NvimTreeToggle<CR>", { noremap = true, silent = true, desc = "Toggle File Explorer" })
+
+    vim.keymap.set("n", "<leader>fE", function()
+        local api = require("nvim-tree.api")
+        local path = vim.fn.expand('%:p:h')  -- get directory of current file
+        vim.cmd('cd ' .. path)
+        api.tree.open()
+    end, { noremap = true, silent = true, desc = "Open File Explorer in Current File's Folder" })
+
+    -- telescope setup
+    require("telescope").setup{}
+
+    -- project mappings using telescope, (p prefix)    
+    vim.keymap.set("n", "<leader>pf", "<cmd>Telescope find_files<CR>", { desc = "Project Files" })
+    vim.keymap.set("n", "<leader>pr", "<cmd>Telescope oldfiles<CR>", { desc = "Project Recent Files" })
+    vim.keymap.set("n", "<leader>pb", "<cmd>Telescope buffers<CR>", { desc = "Project Buffers" })
+
+    -- Harpoon mappings
+    -- local harpoon = require("harpoon")
+
+    -- -- REQUIRED
+    -- harpoon:setup()
+    -- -- REQUIRED
+
+    -- vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end)
+    -- vim.keymap.set("n", "<leader>hm", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
 end
