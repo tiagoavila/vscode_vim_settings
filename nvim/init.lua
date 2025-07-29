@@ -13,6 +13,7 @@ vim.cmd [[
     Plug 'tpope/vim-surround'
     Plug 'easymotion/vim-easymotion'
     Plug 'numToStr/Comment.nvim'
+    Plug 'echasnovski/mini.icons'
 ]]
 
 if not vim.g.vscode then
@@ -21,7 +22,6 @@ if not vim.g.vscode then
         Plug 'roobert/search-replace.nvim'
         " File Explorer
         Plug 'nvim-tree/nvim-tree.lua'
-        Plug 'nvim-tree/nvim-web-devicons'  " optional icons
 
         " Harpoon
         Plug 'ThePrimeagen/harpoon', { 'branch': 'harpoon2' }
