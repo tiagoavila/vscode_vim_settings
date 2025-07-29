@@ -13,11 +13,12 @@ vim.cmd [[
     Plug 'tpope/vim-surround'
     Plug 'easymotion/vim-easymotion'
     Plug 'numToStr/Comment.nvim'
-    Plug 'roobert/search-replace.nvim'
 ]]
 
 if not vim.g.vscode then
     vim.cmd [[
+        " Search and replace plugin on work on Neovim directly, not in VsCode/Cursor
+        Plug 'roobert/search-replace.nvim'
         " File Explorer
         Plug 'nvim-tree/nvim-tree.lua'
         Plug 'nvim-tree/nvim-web-devicons'  " optional icons
@@ -55,23 +56,6 @@ require('Comment').setup({
     -- ignores empty lines
     ignore = '^$'
 })
-
-require("search-replace").setup({
-    default_replace_single_buffer_options = "gcI",
-    default_replace_multi_buffer_options = "egcI",
-})
-
--- Mappings for the search-replace plugin
-local opts_search_replace = {}
-vim.api.nvim_set_keymap("v", "<C-s>", "<CMD>SearchReplaceWithinVisualSelection<CR>", opts_search_replace)
-vim.api.nvim_set_keymap("v", "<C-b>", "<CMD>SearchReplaceWithinVisualSelectionCWord<CR>", opts_search_replace)
-
-vim.api.nvim_set_keymap("n", "<leader>rs", "<CMD>SearchReplaceSingleBufferSelections<CR>", opts_search_replace)
-vim.api.nvim_set_keymap("n", "<leader>ro", "<CMD>SearchReplaceSingleBufferOpen<CR>", opts_search_replace)
-vim.api.nvim_set_keymap("n", "<leader>rw", "<CMD>SearchReplaceSingleBufferCWord<CR>", opts_search_replace)
-vim.api.nvim_set_keymap("n", "<leader>rW", "<CMD>SearchReplaceSingleBufferCWORD<CR>", opts_search_replace)
-vim.api.nvim_set_keymap("n", "<leader>re", "<CMD>SearchReplaceSingleBufferCExpr<CR>", opts_search_replace)
-vim.api.nvim_set_keymap("n", "<leader>rf", "<CMD>SearchReplaceSingleBufferCFile<CR>", opts_search_replace)
 
 -- show the effects of a search / replace in a live preview window
 vim.o.inccommand = "split"
@@ -153,6 +137,15 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 -- enter visual block mode
 keymap("n", "<leader>vb", "<C-v>", { noremap = true, silent = true })
 
+-- Insert blank lines without entering insert mode
+vim.keymap.set('n', '<leader>o', 'o<Esc>', { desc = 'Insert blank line below' })
+vim.keymap.set('n', '<leader>O', 'O<Esc>', { desc = 'Insert blank line above' })
+
+-- Quick replace word under cursor (selective with dot repeat)
+-- * searches for word under cursor, `` returns to original position, 
+-- cgn changes the next search match, then use n. to repeat on other occurrences
+vim.keymap.set('n', '<leader>x', '*``cgn')
+
 -- Customized highlight yank
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
@@ -226,9 +219,6 @@ else
     -- optionally enable 24-bit colour
     vim.opt.termguicolors = true
 
-    -- empty setup using defaults
-    require("nvim-tree").setup()
-
     -- OR setup with some options
     require("nvim-tree").setup({
         update_cwd = true,
@@ -265,6 +255,22 @@ else
     vim.keymap.set("n", "<leader>pf", "<cmd>Telescope find_files<CR>", { desc = "Project Files" })
     vim.keymap.set("n", "<leader>pr", "<cmd>Telescope oldfiles<CR>", { desc = "Project Recent Files" })
     vim.keymap.set("n", "<leader>pb", "<cmd>Telescope buffers<CR>", { desc = "Project Buffers" })
+
+    -- Mappings/Settings for the search-replace plugin
+    require("search-replace").setup({
+        default_replace_single_buffer_options = "gcI",
+        default_replace_multi_buffer_options = "egcI",
+    })
+    local opts_search_replace = {}
+    vim.api.nvim_set_keymap("v", "<C-s>", "<CMD>SearchReplaceWithinVisualSelection<CR>", opts_search_replace)
+    vim.api.nvim_set_keymap("v", "<C-b>", "<CMD>SearchReplaceWithinVisualSelectionCWord<CR>", opts_search_replace)
+
+    vim.api.nvim_set_keymap("n", "<leader>rs", "<CMD>SearchReplaceSingleBufferSelections<CR>", opts_search_replace)
+    vim.api.nvim_set_keymap("n", "<leader>ro", "<CMD>SearchReplaceSingleBufferOpen<CR>", opts_search_replace)
+    vim.api.nvim_set_keymap("n", "<leader>rw", "<CMD>SearchReplaceSingleBufferCWord<CR>", opts_search_replace)
+    vim.api.nvim_set_keymap("n", "<leader>rW", "<CMD>SearchReplaceSingleBufferCWORD<CR>", opts_search_replace)
+    vim.api.nvim_set_keymap("n", "<leader>re", "<CMD>SearchReplaceSingleBufferCExpr<CR>", opts_search_replace)
+    vim.api.nvim_set_keymap("n", "<leader>rf", "<CMD>SearchReplaceSingleBufferCFile<CR>", opts_search_replace)
 
     -- Harpoon mappings
     -- local harpoon = require("harpoon")

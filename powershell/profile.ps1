@@ -15,6 +15,7 @@ Set-Alias -Name un16 -Value UseNode16
 Function UseNode20 { nvm use 20.13.1 }
 Set-Alias -Name un20 -Value UseNode20
 
+$corebridgeRootFolder = "D:\CoreBridge\repos"
 $endorRootFolder = "D:\CoreBridge\repos\Endor"
 $ecommRootFolder = "D:\Corebridge\repos\Ecomm"
 
@@ -100,10 +101,6 @@ Set-Alias -Name re -Value RunEndor
 
 Function ChangeToEndorDirectory([string]$projectName) 
 { 
-	write-host -ForegroundColor green "Changed to Endor directory"
-	D:
-	cd $endorRootFolder
-	
 	$folderDictionary = @{
         "api"              = "end-api"
         "auth"             = "end-auth"
@@ -126,13 +123,26 @@ Function ChangeToEndorDirectory([string]$projectName)
         "web"              = "end-web"
         "apefrontend"      = "end-ape\APE\Frontend"
     }
-	
+
 	if ($projectName -and $folderDictionary.ContainsKey($projectName)) {
+        write-host -ForegroundColor green "Changed to Endor directory"
+        D:
+        cd $endorRootFolder
+
         $targetFolder = $folderDictionary[$projectName]
         Set-Location $targetFolder
         Write-Host -ForegroundColor Cyan "Opened: $targetFolder"
     } elseif ($projectName) {
-        Write-Host -ForegroundColor Red "Project '$projectName' not found in dictionary."
+        $v2FolderDictionary = @{
+            "cbms" = "D:\Corebridge\repos\Ecomm\corebridgefiles\trunk\WebApps\ManagementSystem"
+        }
+        if ($v2FolderDictionary.ContainsKey($projectName)) {
+            $targetFolder = $v2FolderDictionary[$projectName]
+            Set-Location $targetFolder
+            Write-Host -ForegroundColor Cyan "Opened: $targetFolder"
+        } else {
+            Write-Host -ForegroundColor Red "Project '$projectName' not found in dictionary."
+        }
     }
 }
 Set-Alias -Name cde -Value ChangeToEndorDirectory
@@ -285,7 +295,7 @@ Function OpenInCursor([string]$projectName = "")
         "web"           = "$endorRootFolder\end-web"
         "ec"            = "$ecommRootFolder\ecomm-api-storefront\trunk\WebApps\Znode\Projects"
         "eca"           = "$ecommRootFolder\ecomm-admin"
-        "cbms"          = "$ecommRootFolder\corebridgefiles\trunk\WebApps\ManagementSystem"
+        "cbms"          = "$ecommRootFolder\corebridgefiles\trunk"
     }
 
     # Check if the string parameter is null, empty, or whitespace
@@ -449,13 +459,13 @@ function RemoveFolder {
 
 Set-Alias -Name rmdir -Value RemoveFolder 
 
-function ApplyStash() {
+function ApplyStashCbms() {
     D:
     cd $ecommRootFolder\corebridgefiles\trunk\WebApps\ManagementSystem
     git stash apply --index $(git stash list | grep ": Local$" | head -1 | cut -d: -f1)
 }
 
-Set-Alias -Name ascbms -Value ApplyStash 
+Set-Alias -Name ascbms -Value ApplyStashCbms 
 
 Invoke-Expression (&starship init powershell)
 

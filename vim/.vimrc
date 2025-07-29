@@ -76,3 +76,7 @@ vnoremap J :m '>+1<CR>gv=gv
 
 -- enter visual block mode
 nnoremap <leader>vb <C-v>
+
+-- better indent handling
+vnoremap < <gv
+vnoremap > >gv
