@@ -92,3 +92,5 @@ nnoremap <leader>j J
 
 " Join without adding a space (optional)
 nnoremap <leader>J gJ
+
+nnoremap <leader>ya ggVGy
