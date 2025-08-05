@@ -80,3 +80,15 @@ nnoremap <leader>vb <C-v>
 -- better indent handling
 vnoremap < <gv
 vnoremap > >gv
+
+" Insert blank line below without entering insert mode
+nnoremap <leader>o o<Esc>
+
+" Insert blank line above without entering insert mode  
+nnoremap <leader>O O<Esc>
+
+" Join current line with the one below
+nnoremap <leader>j J
+
+" Join without adding a space (optional)
+nnoremap <leader>J gJ

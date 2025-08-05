@@ -160,6 +160,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
+-- Join current line with the one below
+vim.keymap.set("n", "<leader>j", "J", { desc = "Join lines" })
+
+-- Join without adding a space (optional alternative)
+vim.keymap.set("n", "<leader>J", "gJ", { desc = "Join lines (no space)" })
+
 -- Diferent settings for nvim on VSCode/Cursor
 if vim.g.vscode then
     -- VSCode extension
