@@ -166,6 +166,7 @@ vim.keymap.set("n", "<leader>j", "J", { desc = "Join lines" })
 -- Join without adding a space (optional alternative)
 vim.keymap.set("n", "<leader>J", "gJ", { desc = "Join lines (no space)" })
 
+-- Yank all content of file
 vim.keymap.set("n", "<leader>ya", "ggVGy", { desc = "Yank entire file" })
 
 -- Diferent settings for nvim on VSCode/Cursor

@@ -93,4 +93,5 @@ nnoremap <leader>j J
 " Join without adding a space (optional)
 nnoremap <leader>J gJ
 
+" Yank all content of file
 nnoremap <leader>ya ggVGy
