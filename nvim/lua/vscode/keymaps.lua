@@ -13,7 +13,7 @@ keymap({"n", "v"}, '<leader>fd', function() vscode.action('editor.action.formatD
 
 -- Breakpoint operations (b prefix)
 keymap({"n", "v"}, "<leader>bt", function() vscode.action('editor.debug.action.toggleBreakpoint') end, opts)
-keymap({"n", "v"}, "<leader>br", function() vscode.action('workbench.debug.viewlet.action.removeAllBreakpoints') end, opts)
+keymap({"n", "v"}, "<leader>bra", function() vscode.action('workbench.debug.viewlet.action.removeAllBreakpoints') end, opts)
 
 -- Debug operations (d prefix)
 keymap({"n", "v"}, "<leader>ds", function() vscode.action('workbench.action.debug.start') end, opts)
@@ -21,6 +21,8 @@ keymap({"n", "v"}, "<leader>dw", function() vscode.action('editor.debug.action.s
 
 -- View operations (v prefix)
 keymap({"n", "v"}, "<leader>vp", function() vscode.action('workbench.actions.view.problems') end, opts)
+keymap({"n", "v"}, "<leader>ve", function() vscode.action('workbench.view.explorer') end, opts)
+keymap({"n", "v"}, "<leader>vc", function() vscode.action('workbench.view.scm') end, opts)
 
 -- File operations (f prefix)  
 keymap({"n", "v"}, "<leader>fs", function() vscode.action('workbench.action.findInFiles') end, opts)
