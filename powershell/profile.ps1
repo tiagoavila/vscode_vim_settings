@@ -467,5 +467,11 @@ function ApplyStashCbms() {
 
 Set-Alias -Name ascbms -Value ApplyStashCbms 
 
+function OpenWorkHoursSpreadSheet() {
+    Start-Process "D:\Dropbox\horas-trabalho.xlsx"  
+}
+
+Set-Alias -Name owhs -Value OpenWorkHoursSpreadSheet 
+
 Invoke-Expression (&starship init powershell)
 

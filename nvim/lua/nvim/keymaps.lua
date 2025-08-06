@@ -7,6 +7,7 @@ keymap('i', 'jk', '<Esc>:w<CR>', opts)
 
 -- File explorer mappings (f prefix)
 keymap("n", "<leader>fe", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle File Explorer" })
+keymap("n", "<leader>fo", "<cmd>NvimTreeFocus<CR>", { desc = " Open the tree if it is closed, and then focus on the tree." })
 keymap("n", "<leader>fE", function()
     local api = require("nvim-tree.api")
     local path = vim.fn.expand('%:p:h')
