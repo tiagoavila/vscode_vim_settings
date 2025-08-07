@@ -17,7 +17,7 @@ let mapleader=" "
 " Remap <Leader>w and <Leader>we to save the files
 nnoremap <leader>w :w<CR>
 nnoremap <leader>we :wa<CR>
-
+
 " Custom mapping to replace completely all occurrences of the word under the cursor, this one starts with an empty replacement
 nnoremap <leader>rw :%s/\<<C-r><C-w>\>//g<Left><Left>
 xnoremap <leader>rs :s///gc<Left><Left><Left><Left>
@@ -74,10 +74,10 @@ vnoremap K :m '<-2<CR>gv=gv
 nnoremap J :m .+1<CR>==
 vnoremap J :m '>+1<CR>gv=gv
 
--- enter visual block mode
+" enter visual block mode
 nnoremap <leader>vb <C-v>
 
--- better indent handling
+" better indent handling
 vnoremap < <gv
 vnoremap > >gv
 
@@ -95,3 +95,6 @@ nnoremap <leader>J gJ
 
 " Yank all content of file
 nnoremap <leader>ya ggVGy
+
+" Paste without overwriting clipboard in visual mode
+xnoremap p "_dP

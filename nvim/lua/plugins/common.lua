@@ -4,5 +4,4 @@ vim.cmd [[
     Plug 'easymotion/vim-easymotion'
     Plug 'numToStr/Comment.nvim'
     Plug 'echasnovski/mini.icons'
-    Plug 'gennaro-tedesco/nvim-peekup'
 ]]

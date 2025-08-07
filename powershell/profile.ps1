@@ -473,5 +473,5 @@ function OpenWorkHoursSpreadSheet() {
 
 Set-Alias -Name owhs -Value OpenWorkHoursSpreadSheet 
 
-Invoke-Expression (&starship init powershell)
+# Invoke-Expression (&starship init powershell)
 

@@ -8,4 +8,7 @@ vim.cmd [[
     " Fuzzy Finder
     Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-lua/plenary.nvim'
+
+    " Manager for Registers like a clipboard manager
+    Plug 'gennaro-tedesco/nvim-peekup'
 ]]

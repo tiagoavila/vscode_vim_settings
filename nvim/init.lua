@@ -10,9 +10,9 @@ require("plugins")
 
 -- Load environment-specific configurations
 if vim.g.vscode then
-    require("vscode.keymaps")
+    require("vscode_settings.keymaps")
 else
-    require("nvim.keymaps")
+    require("nvim_settings.keymaps")
 end
 
 -- ~/.config/nvim/
@@ -32,7 +32,7 @@ end
 -- │   │       ├── telescope.lua
 -- │   │       ├── search-replace.lua
 -- │   │       └── harpoon.lua
--- │   ├── vscode/
+-- │   ├── vscode_settings/
 -- │   │   └── keymaps.lua         (vscode-specific mappings)
--- │   └── nvim/
+-- │   └── nvim_settings/
 -- │       └── keymaps.lua         (nvim-specific mappings)
