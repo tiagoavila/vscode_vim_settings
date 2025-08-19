@@ -296,6 +296,7 @@ Function OpenInCursor([string]$projectName = "")
         "ec"            = "$ecommRootFolder\ecomm-api-storefront\trunk\WebApps\Znode\Projects"
         "eca"           = "$ecommRootFolder\ecomm-admin"
         "cbms"          = "$ecommRootFolder\corebridgefiles\trunk"
+        "ecfe"          = "$ecommRootFolder\ecomm-api-storefront\trunk\WebApps\Znode\Projects\Znode.Engine.MvcDemo\Scripts\Typescripts"
     }
 
     # Check if the string parameter is null, empty, or whitespace
