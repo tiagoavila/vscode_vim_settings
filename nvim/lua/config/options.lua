@@ -1,6 +1,3 @@
--- Show the effects of a search / replace in a live preview window
-vim.o.inccommand = "split"
-
 -- Set up vim options for case handling
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
