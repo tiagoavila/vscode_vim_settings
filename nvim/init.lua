@@ -28,6 +28,7 @@ end
 -- │   │   ├── nvim-only.lua       (nvim-specific plugins)
 -- │   │   └── configs/
 -- │   │       ├── comment.lua
+-- │   │       ├── hop.lua
 -- │   │       ├── nvim-tree.lua
 -- │   │       ├── telescope.lua
 -- │   │       ├── search-replace.lua

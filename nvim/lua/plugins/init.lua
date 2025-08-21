@@ -16,6 +16,7 @@ vim.cmd [[
 
 -- Setup common plugins
 require("plugins.configs.comment")
+require("plugins.configs.hop-vim")
 
 -- Setup nvim-only plugins
 if not vim.g.vscode then
