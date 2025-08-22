@@ -23,6 +23,7 @@ keymap({"n", "v"}, "<leader>dw", function() vscode.action('editor.debug.action.s
 keymap({"n", "v"}, "<leader>vp", function() vscode.action('workbench.actions.view.problems') end, opts)
 keymap({"n", "v"}, "<leader>ve", function() vscode.action('workbench.view.explorer') end, opts)
 keymap({"n", "v"}, "<leader>vc", function() vscode.action('workbench.view.scm') end, opts)
+keymap({"n", "v"}, "<leader>vt", function() vscode.action('workbench.action.terminal.toggleTerminal') end, opts)
 
 -- File operations (f prefix)  
 keymap({"n", "v"}, "<leader>fs", function() vscode.action('workbench.action.findInFiles') end, opts)
