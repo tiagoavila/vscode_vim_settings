@@ -57,3 +57,4 @@ keymap("n", "<leader>J", "gJ", { desc = "Join lines (no space)" })
 
 -- Yank entire file
 keymap("n", "<leader>ya", "ggVGy", { desc = "Yank entire file" })
+keymap("n", "<leader>va", "ggVG", { desc = "Yank entire file" })
