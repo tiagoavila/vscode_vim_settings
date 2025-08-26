@@ -10,6 +10,7 @@ keymap('v', 'p', '"_dP', opts)
 
 -- Change without yanking to clipboard
 keymap({ 'n', 'v' }, '<leader>c', '"_c', opts)
+keymap({ 'n', 'v' }, '<leader>x', '"_x', opts)
 
 -- Delete without yanking to clipboard
 keymap({ 'n', 'v' }, '<leader>d', '"_d', opts)
