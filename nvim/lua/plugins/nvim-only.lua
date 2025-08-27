@@ -11,4 +11,8 @@ vim.cmd [[
 
     " Manager for Registers like a clipboard manager
     Plug 'gennaro-tedesco/nvim-peekup'
+
+    " Neovim plugin for tagging important files
+    Plug 'nvim-tree/nvim-web-devicons'
+    Plug 'cbochs/grapple.nvim'
 ]]

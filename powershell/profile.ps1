@@ -277,7 +277,7 @@ Set-Alias -Name oir -Value OpenInRider
 Function OpenInCursor([string]$projectName = "")
 {
     $projectPaths = @{
-		"apefrontend"   = "$endorRootFolder\end-ape\APE\Frontend"
+		"apefe"   = "$endorRootFolder\end-ape\APE\Frontend"
 		"ape"           = "$endorRootFolder\end-ape\APE"
         "api"           = "$endorRootFolder\end-api"
         "ate"           = "$endorRootFolder\end-ate"

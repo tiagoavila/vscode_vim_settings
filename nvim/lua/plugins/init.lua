@@ -23,5 +23,5 @@ if not vim.g.vscode then
     require("plugins.configs.nvim-tree")
     require("plugins.configs.telescope")
     require("plugins.configs.search-replace")
-    -- require("plugins.configs.harpoon") -- uncomment when ready
+    require("plugins.configs.grapple")
 end
