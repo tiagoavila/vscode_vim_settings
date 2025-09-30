@@ -24,4 +24,6 @@ if not vim.g.vscode then
     require("plugins.configs.telescope")
     require("plugins.configs.search-replace")
     require("plugins.configs.grapple")
+    require("plugins.configs.which-key")
+    require("plugins.configs.nvim-web-devicons")
 end

@@ -257,6 +257,7 @@ Function OpenInRider([string]$projectName = "")
         "tasks"         = "$endorRootFolder\end-tasks\Endor.Tasks.sln"
         "ec"            = "$ecommRootFolder\ecomm-api-storefront\trunk\WebApps\Znode\Projects\Znode.Multifront.sln"
         "cbms"          = "$ecommRootFolder\corebridgefiles\trunk\WebApps\ManagementSystem\Management System.sln"
+        "v2cp"          = "$ecommRootFolder\corebridgefiles\trunk\WebApps\CustomerPortal\CustomerPortal.sln"
     }
 
     # Check if the string parameter is null, empty, or whitespace
