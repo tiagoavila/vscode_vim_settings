@@ -14,6 +14,7 @@ keymap({"n", "v"}, '<leader>fd', function() vscode.action('editor.action.formatD
 -- Breakpoint operations (b prefix)
 keymap({"n", "v"}, "<leader>bt", function() vscode.action('editor.debug.action.toggleBreakpoint') end, opts)
 keymap({"n", "v"}, "<leader>bra", function() vscode.action('workbench.debug.viewlet.action.removeAllBreakpoints') end, opts)
+keymap({"n", "v"}, "<leader>be", function() vscode.action('editor.debug.action.editBreakpoint') end, opts)
 
 -- Debug operations (d prefix)
 keymap({"n", "v"}, "<leader>ds", function() vscode.action('workbench.action.debug.start') end, opts)
@@ -46,3 +47,10 @@ keymap({"n", "v"}, "<leader>emr", function() vscode.action('workbench.action.mov
 keymap({"n", "v"}, "<leader>eml", function() vscode.action('workbench.action.moveEditorToLeftGroup') end, opts)
 keymap({"n", "v"}, "<leader>efr", function() vscode.action('workbench.action.focusRightGroup') end, opts)
 keymap({"n", "v"}, "<leader>efl", function() vscode.action('workbench.action.focusLeftGroup') end, opts)
+
+
+-- zc = fold
+keymap("n", "zc", function() vscode.action("editor.fold") end, opts)
+
+-- zo = unfold
+keymap("n", "zo", function() vscode.action("editor.unfold") end, opts)
