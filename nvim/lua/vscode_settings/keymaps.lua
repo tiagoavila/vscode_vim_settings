@@ -48,9 +48,10 @@ keymap({"n", "v"}, "<leader>eml", function() vscode.action('workbench.action.mov
 keymap({"n", "v"}, "<leader>efr", function() vscode.action('workbench.action.focusRightGroup') end, opts)
 keymap({"n", "v"}, "<leader>efl", function() vscode.action('workbench.action.focusLeftGroup') end, opts)
 
+-- Folds
+keymap("n", "zf", function() vscode.action("editor.fold") end, opts)        -- fold
+keymap("n", "zu", function() vscode.action("editor.unfold") end, opts)      -- unfold
+keymap("n", "zt", function() vscode.action("editor.toggleFold") end, opts)  -- toggle fold
+keymap("n", "zF", function() vscode.action("editor.foldAll") end, opts)     -- fold all
+keymap("n", "zU", function() vscode.action("editor.unfoldAll") end, opts)   -- unfold all
 
--- zc = fold
-keymap("n", "zc", function() vscode.action("editor.fold") end, opts)
-
--- zo = unfold
-keymap("n", "zo", function() vscode.action("editor.unfold") end, opts)
