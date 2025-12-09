@@ -5,7 +5,7 @@ local opts = { noremap = true, silent = true }
 keymap('i', 'jj', '<Esc>', { noremap = true, silent = true, desc = "Exit Insert Mode" })
 keymap('i', 'jk', '<Esc>:w<CR>', { noremap = true, silent = true, desc = "Exit Insert Mode and Save" })
 
--- File explorer mappings (f prefix)
+-- File explorer mappings (f prefix) - nvim-tree
 keymap("n", "<leader>ve", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle File Explorer" })
 keymap("n", "<leader>fe", "<cmd>NvimTreeFocus<CR>", { desc = "Open the tree if it is closed, and then focus on the tree." })
 keymap("n", "<leader>vE", function()
@@ -15,7 +15,7 @@ keymap("n", "<leader>vE", function()
     api.tree.open()
 end, { desc = "Open File Explorer in Current File's Folder" })
 
--- Project mappings using telescope (p prefix)    
+-- Project mappings using telescope (p prefix) - Telescope, a highly extendable fuzzy finder over lists  
 keymap("n", "<leader>pf", "<cmd>Telescope find_files<CR>", { desc = "Project Files" })
 keymap("n", "<leader>pr", "<cmd>Telescope oldfiles<CR>", { desc = "Project Recent Files" })
 keymap("n", "<leader>pb", "<cmd>Telescope buffers<CR>", { desc = "Project Buffers" })
