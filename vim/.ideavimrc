@@ -4,7 +4,7 @@
 " Find more examples here: https://jb.gg/share-ideavimrc
 
 " Source your .vimrc
-source ~/.vimrc
+source D:\vscode_vim_settings\vim\.vimrc
 let mapleader=" "
 
 "" -- Suggested options --
@@ -25,9 +25,8 @@ set functiontextobj
 
 " Highlight copied text
 Plug 'machakann/vim-highlightedyank'
-" Commentary plugin
-Plug 'tpope/vim-commentary'
 
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'justinmk/vim-sneak'
 Plug 'easymotion/vim-easymotion'
@@ -35,14 +34,75 @@ Plug 'easymotion/vim-easymotion'
 nmap gd :action GotoDeclaration<CR>
 nnoremap gr :action FindUsages<CR>
 nmap gi :action ReSharperGotoImplementation<CR>
+nmap gh :action QuickJavaDoc<CR>
 
 map <leader>fd :action ReformatCode<CR>
 map <leader>ff :action ShowIntentionActions<CR>
 
+" b prefix
 nnoremap <leader>bt :action ToggleLineBreakpoint<CR>
+nnoremap <leader>be :action ViewBreakpoints<CR>
+nnoremap <leader>bra :action RiderRemoveAllLineBreakpoints<CR>
+
+" Debug actions (d prefix)
+map <leader>djc :action JumpToStatement<CR>
+map <leader>drc :action RunToCursor<CR>
 
 nnoremap <leader>rn :action RenameElement<CR>
-nnoremap <leader>rr :action Refactorings.QuickListPopupAction<CR>
+map <leader>rr :action Refactorings.QuickListPopupAction<CR>
+
+" Git actions (g prefix)
+map <leader>gb :action Annotate<CR> 
+
+" View windows (v prefix)
+" View Structure of file (methods, props and variables
+map <leader>vs :action ActivateStructureToolWindow<CR> 
+ " View problems
+map <leader>vp :action ActivateProblemsViewToolWindow<CR>
+ " View Explorer
+map <leader>ve :action ActivateProjectToolWindow<CR>
+ " View Debug window
+map <leader>vd :action ActivateDebugToolWindow<CR>
+ " View Commit Window
+map <leader>vc :action ActivateCommitToolWindow<CR>
+ " View Find window
+map <leader>vf :action ActivateFindToolWindow<CR>
+ " View Terminal
+map <leader>vt :action ActivateTerminalToolWindow<CR>
+ " View Unit Tests Window
+map <leader>vut :action ActivateUnitTestsToolWindow<CR>
+ " View NavBar - opens a dropdown to navigate between items in a class
+map <leader>vnb :action ShowNavBar<CR>
+ " View Popup Menu
+map <leader>vpm :action ShowPopupMenu<CR>
+ " View Immediate window
+map <leader>viw :action NavigateToImmediateWindow<CR>
+" Hide all tool windows and open keep only Project Explorer opened
+nnoremap <leader>fve :action HideAllWindows<CR>:action ActivateProjectToolWindow<CR>
+" Hide all tool windows
+nnoremap <leader>haw :action HideAllWindows<CR>
+
+" Bookmarks (bm prefix)
+ " View Bookmarks window
+map <leader>bmv :action ActivateBookmarksToolWindow<CR>
+map <leader>bma :action ToggleBookmarkWithMnemonic<CR>
+map <leader>bmt :action ToggleBookmark<CR>
+map <leader>bmd :action DeleteMnemonicFromBookmark<CR>
+map <leader>bmg :action ShowTypeBookmarks<CR>
+
+" Editor (e prefix)
+map <leader>emr :action MoveTabRight<CR>
+
+" Test mappings (t prefix)
+map <leader>tr :action RiderUnitTestRunContextAction<CR>
+map <leader>td :action RiderUnitTestDebugContextAction<CR>
+
+" Fold mappings (the same I use in nvim)
+map zf :action CollapseRegion<CR>
+map zu :action ExpandRegion<CR>
+map zt :action ExpandCollapseToggleAction<CR>
+map zF :action CollapseAllRegions<CR>
+map zU :action ExpandAllRegions<CR>
 
 "" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 "" Map \r to the Reformat Code action
