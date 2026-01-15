@@ -26,4 +26,5 @@ if not vim.g.vscode then
     require("plugins.configs.grapple")
     require("plugins.configs.which-key")
     require("plugins.configs.nvim-web-devicons")
+    require("plugins.configs.alpha-nvim")
 end

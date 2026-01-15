@@ -18,4 +18,7 @@ vim.cmd [[
 
     " Create key bindings that stick. WhichKey helps you remember your Neovim keymaps, by showing available keybindings in a popup as you type.
     Plug 'folke/which-key.nvim'
+
+    " Nvim startup screen
+    Plug 'goolord/alpha-nvim'
 ]]
