@@ -55,3 +55,5 @@ keymap("n", "zt", function() vscode.action("editor.toggleFold") end, opts)  -- t
 keymap("n", "zF", function() vscode.action("editor.foldAll") end, opts)     -- fold all
 keymap("n", "zU", function() vscode.action("editor.unfoldAll") end, opts)   -- unfold all
 
+-- Git
+keymap({"n", "v"}, "<leader>gb", function() vscode.action('gitlens.toggleFileBlame') end, opts)
