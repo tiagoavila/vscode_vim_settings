@@ -5,6 +5,12 @@ local opts = { noremap = true, silent = true }
 keymap('i', 'jj', '<Esc>', { noremap = true, silent = true, desc = "Exit Insert Mode" })
 keymap('i', 'jk', '<Esc>:w<CR>', { noremap = true, silent = true, desc = "Exit Insert Mode and Save" })
 
+-- LSP actions (f prefix) - vanilla-Neovim counterparts of the VS Code keymaps in
+-- vscode_settings/keymaps.lua. This whole file is only require()d from the `else`
+-- (non-vscode) branch of init.lua, so these never bind inside VS Code/Cursor.
+keymap({ "n", "v" }, "<leader>ff", vim.lsp.buf.code_action, { noremap = true, silent = true, desc = "LSP: Quick fix / code action" })
+keymap({ "n", "v" }, "<leader>fd", function() vim.lsp.buf.format({ async = true }) end, { noremap = true, silent = true, desc = "LSP: Format document" })
+
 -- File explorer mappings (f prefix) - nvim-tree
 keymap("n", "<leader>ve", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle File Explorer" })
 keymap("n", "<leader>fe", "<cmd>NvimTreeFocus<CR>", { desc = "Open the tree if it is closed, and then focus on the tree." })
@@ -46,3 +52,7 @@ vim.api.nvim_set_keymap('n', '<Leader>bmn', ':lua require("grapple").jump("next"
 
 -- User command
 -- vim.keymap.set("n", "<leader>1", "<cmd>Grapple select index=1<cr>", { desc = "Jump to Bookmark 1" })
+
+vim.keymap.set("n", "<leader>yfp", function()
+  vim.fn.setreg("+", vim.fn.expand("%:p"))
+end, { desc = "Copy file full path to clipboard" })

@@ -21,4 +21,13 @@ vim.cmd [[
 
     " Nvim startup screen
     Plug 'goolord/alpha-nvim'
+
+    " Nvim Lsp - installed to allow working with Arduino
+    Plug 'neovim/nvim-lspconfig'
+
+    " Completion engine and sources
+    Plug 'hrsh7th/nvim-cmp'
+    Plug 'hrsh7th/cmp-nvim-lsp'
+    Plug 'hrsh7th/cmp-buffer'
+    Plug 'hrsh7th/cmp-path'
 ]]

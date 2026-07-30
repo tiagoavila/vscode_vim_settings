@@ -17,7 +17,9 @@ end
 
 -- ~/.config/nvim/
 -- ├── init.lua                    (main entry point - minimal)
+-- ├── init_backup.lua             (backup of previous config)
 -- ├── lua/
+-- │   ├── lsp.lua                 (LSP configuration)
 -- │   ├── config/
 -- │   │   ├── options.lua         (vim options and settings)
 -- │   │   ├── keymaps.lua         (general keymaps for both environments)
@@ -27,12 +29,16 @@ end
 -- │   │   ├── common.lua          (plugins for both nvim and vscode)
 -- │   │   ├── nvim-only.lua       (nvim-specific plugins)
 -- │   │   └── configs/
+-- │   │       ├── alpha-nvim.lua
 -- │   │       ├── comment.lua
--- │   │       ├── hop.lua
+-- │   │       ├── grapple.lua
+-- │   │       ├── hop-vim.lua
+-- │   │       ├── nvim-cmp.lua
 -- │   │       ├── nvim-tree.lua
--- │   │       ├── telescope.lua
+-- │   │       ├── nvim-web-devicons.lua
 -- │   │       ├── search-replace.lua
--- │   │       └── harpoon.lua
+-- │   │       ├── telescope.lua
+-- │   │       └── which-key.lua
 -- │   ├── vscode_settings/
 -- │   │   └── keymaps.lua         (vscode-specific mappings)
 -- │   └── nvim_settings/

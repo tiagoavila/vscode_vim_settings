@@ -3,8 +3,6 @@
 # Enabling vim mode in Powershell
 Set-PSReadlineOption -EditMode vi
 Set-PSReadLineOption -ViModeIndicator Cursor
-# Set up jj to escape Insert mode
-Set-PSReadLineKeyHandler -Chord 'j,j' -Function ViCommandMode -ViMode Insert
 
 Function Run-Azurite { azurite --silent --location c:\azurite --debug c:\azurite\debug.log --skipApiVersionCheck }
 Set-Alias -Name azrt -Value Run-Azurite
@@ -164,6 +162,26 @@ Function RunEcommAdmin()
 }
 Set-Alias -Name reca -Value RunEcommAdmin
 
+Function ChangeToV2CdbMigrationFolder()
+{
+	write-host -ForegroundColor green "Change to V2 Cdb Migration Folder"
+    D:
+    cd D:\Corebridge\repos\Ecomm\corebridgefiles\Database\Migrations\CoreBridge.Data.Migrations.Cdb
+}
+Set-Alias -Name cdcdb -Value ChangeToV2CdbMigrationFolder 
+
+Function RunCdbMigration([string]$databaseName = "") 
+{
+    ChangeToV2CdbMigrationFolder
+
+    if ($databaseName) {
+        .\BuildAndRunMigrations.ps1 -DatabaseName $databaseName
+    } else {
+        .\BuildAndRunMigrations.ps1
+    }
+}
+Set-Alias -Name rcdbm -Value RunCdbMigration
+
 function CheckEndorProcessesRunning {
     param (
         [switch]$all
@@ -298,6 +316,8 @@ Function OpenInCursor([string]$projectName = "")
         "eca"           = "$ecommRootFolder\ecomm-admin"
         "cbms"          = "$ecommRootFolder\corebridgefiles\trunk"
         "ecfe"          = "$ecommRootFolder\ecomm-api-storefront\trunk\WebApps\Znode\Projects\Znode.Engine.MvcDemo\Scripts\Typescripts"
+        "v2cp"          = "$ecommRootFolder\corebridgefiles\trunk\WebApps\CustomerPortal"
+        "cbdm"          = "$ecommRootFolder\corebridgefiles\Database\Migrations\CoreBridge.Data.Migrations.Cdb\Trunk"
     }
 
     # Check if the string parameter is null, empty, or whitespace
@@ -474,6 +494,26 @@ function OpenWorkHoursSpreadSheet() {
 }
 
 Set-Alias -Name owhs -Value OpenWorkHoursSpreadSheet 
+
+# arduino-cli settings and aliases
+# Set Alias for arduino-cli
+Set-Alias -Name adc -Value arduino-cli
+
+function NewArduinoSketch {
+    param([string]$Name)
+
+    arduino-cli sketch new $Name
+
+    @"
+profiles:
+  uno:
+    fqbn: arduino:avr:uno
+    port: COM6
+
+default_profile: uno
+"@ | Set-Content "$Name\sketch.yaml"
+}
+Set-Alias -Name adcns -Value NewArduinoSketch
 
 # Invoke-Expression (&starship init powershell)
 

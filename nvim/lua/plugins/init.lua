@@ -20,6 +20,8 @@ require("plugins.configs.hop-vim")
 
 -- Setup nvim-only plugins
 if not vim.g.vscode then
+    require("plugins.configs.nvim-cmp")
+    require("lsp")
     require("plugins.configs.nvim-tree")
     require("plugins.configs.telescope")
     require("plugins.configs.search-replace")
