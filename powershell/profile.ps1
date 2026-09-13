@@ -162,17 +162,16 @@ Function RunEcommAdmin()
 }
 Set-Alias -Name reca -Value RunEcommAdmin
 
-Function ChangeToV2CdbMigrationFolder()
+Function ChangeToV2CbdMigrationFolder()
 {
 	write-host -ForegroundColor green "Change to V2 Cdb Migration Folder"
     D:
     cd D:\Corebridge\repos\Ecomm\corebridgefiles\Database\Migrations\CoreBridge.Data.Migrations.Cdb
 }
-Set-Alias -Name cdcdb -Value ChangeToV2CdbMigrationFolder 
 
 Function RunCdbMigration([string]$databaseName = "") 
 {
-    ChangeToV2CdbMigrationFolder
+    ChangeToV2CbdMigrationFolder 
 
     if ($databaseName) {
         .\BuildAndRunMigrations.ps1 -DatabaseName $databaseName
@@ -180,7 +179,7 @@ Function RunCdbMigration([string]$databaseName = "")
         .\BuildAndRunMigrations.ps1
     }
 }
-Set-Alias -Name rcdbm -Value RunCdbMigration
+Set-Alias -Name rcbm -Value RunCdbMigration
 
 function CheckEndorProcessesRunning {
     param (
@@ -317,7 +316,7 @@ Function OpenInCursor([string]$projectName = "")
         "cbms"          = "$ecommRootFolder\corebridgefiles\trunk"
         "ecfe"          = "$ecommRootFolder\ecomm-api-storefront\trunk\WebApps\Znode\Projects\Znode.Engine.MvcDemo\Scripts\Typescripts"
         "v2cp"          = "$ecommRootFolder\corebridgefiles\trunk\WebApps\CustomerPortal"
-        "cbdm"          = "$ecommRootFolder\corebridgefiles\Database\Migrations\CoreBridge.Data.Migrations.Cdb\Trunk"
+        "cbdm"          = "$ecommRootFolder\corebridgefiles\Database\Migrations\CoreBridge.Data.Migrations.Cdb"
     }
 
     # Check if the string parameter is null, empty, or whitespace
@@ -494,6 +493,12 @@ function OpenWorkHoursSpreadSheet() {
 }
 
 Set-Alias -Name owhs -Value OpenWorkHoursSpreadSheet 
+
+function ChangeToDesktop() {
+    Set-Location "C:\Users\tiago\OneDrive\Área de Trabalho"
+}
+
+Set-Alias -Name cdd -Value ChangeToDesktop 
 
 # arduino-cli settings and aliases
 # Set Alias for arduino-cli

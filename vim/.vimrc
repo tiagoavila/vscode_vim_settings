@@ -67,12 +67,12 @@ nnoremap <C-d> <C-d>zz
 nnoremap <C-u> <C-u>zz
 
 " Move current line or selected lines up with K
-nnoremap K :m .-2<CR>==
-vnoremap K :m '<-2<CR>gv=gv
+nnoremap <A-k> :m .-2<CR>==
+vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Move current line or selected lines down with J
-nnoremap J :m .+1<CR>==
-vnoremap J :m '>+1<CR>gv=gv
+nnoremap <A-j> :m .+1<CR>==
+vnoremap <A-j> :m '>+1<CR>gv=gv
 
 " enter visual block mode
 nnoremap <leader>vb <C-v>
@@ -88,10 +88,10 @@ nnoremap <leader>o o<Esc>
 nnoremap <leader>O O<Esc>
 
 " Join current line with the one below
-nnoremap <leader>j J
+" nnoremap <leader>j J
 
 " Join without adding a space (optional)
-nnoremap <leader>J gJ
+" nnoremap <leader>J gJ
 
 " Yank all content of file
 nnoremap <leader>ya ggVGy

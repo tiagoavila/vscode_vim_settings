@@ -34,17 +34,17 @@ keymap('n', '<C-d>', '<C-d>zz', { noremap = opts.noremap, silent = opts.silent, 
 keymap('n', '<C-u>', '<C-u>zz', { noremap = opts.noremap, silent = opts.silent, desc = 'Scroll up and center' })
 
 -- Move text up and down
-keymap({ 'n', 'v' }, "J", ":m .+1<CR>==", { noremap = opts.noremap, silent = opts.silent, desc = 'Move line down' })
-keymap({ 'n', 'v' }, "K", ":m .-2<CR>==", { noremap = opts.noremap, silent = opts.silent, desc = 'Move line up' })
-keymap("x", "J", ":move '>+1<CR>gv-gv", { noremap = opts.noremap, silent = opts.silent, desc = 'Move selection down' })
-keymap("x", "K", ":move '<-2<CR>gv-gv", { noremap = opts.noremap, silent = opts.silent, desc = 'Move selection up' })
+keymap({ 'n', 'v' }, "<A-j>", ":m .+1<CR>==", { noremap = opts.noremap, silent = opts.silent, desc = 'Move line down' })
+keymap({ 'n', 'v' }, "<A-k>", ":m .-2<CR>==", { noremap = opts.noremap, silent = opts.silent, desc = 'Move line up' })
+keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", { noremap = opts.noremap, silent = opts.silent, desc = 'Move selection down' })
+keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", { noremap = opts.noremap, silent = opts.silent, desc = 'Move selection up' })
 
 -- Enter visual block mode
 keymap("n", "<leader>vb", "<C-v>", { noremap = opts.noremap, silent = opts.silent, desc = 'Enter visual block mode' })
 
 -- Insert blank lines without entering insert mode
-keymap('n', '<leader>o', 'o<Esc>', { desc = 'Insert blank line below' })
 keymap('n', '<leader>O', 'O<Esc>', { desc = 'Insert blank line above' })
+keymap('n', '<leader>o', 'o<Esc>', { desc = 'Insert blank line below' })
 
 -- Quick replace word under cursor (selective with dot repeat)
 -- * searches for word under cursor, `` returns to original position, 
@@ -52,8 +52,8 @@ keymap('n', '<leader>O', 'O<Esc>', { desc = 'Insert blank line above' })
 keymap('n', '<leader>x', '*``cgn', { desc = "Quick replace word under cursor (selective with dot repeat)" })
 
 -- Join lines
-keymap("n", "<leader>j", "J", { desc = "Join lines" })
-keymap("n", "<leader>J", "gJ", { desc = "Join lines (no space)" })
+-- keymap("n", "<leader>j", "J", { desc = "Join lines" })
+-- keymap("n", "<leader>J", "gJ", { desc = "Join lines (no space)" })
 
 -- Yank entire file
 keymap("n", "<leader>ya", "ggVGy", { desc = "Yank entire file" })
