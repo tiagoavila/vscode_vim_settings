@@ -83,19 +83,44 @@ Function CheckoutAndRunEndorDev([string]$project = "")
 }
 Set-Alias -Name cred -Value CheckoutAndRunEndorDev
 
-Function RunEndor([string]$project = "") 
+Function RunEndor([string[]]$project = @()) 
 { 
     D:
     cd $endorRootFolder
-    if (-not [string]::IsNullOrWhiteSpace($project)) {
-		Write-Host -ForegroundColor Green "Run $project"
-        py cb.py -s $project
+    if ($project.Count -gt 0) {
+        foreach ($p in $project) {
+            Write-Host -ForegroundColor Green "Run $p"
+            py cb.py -s $p
+        }
     } else {
 		Write-Host -ForegroundColor Green "Run Endor"
         py cb.py -s
     }
 }
 Set-Alias -Name re -Value RunEndor
+
+Function RunBasicEndor
+{
+    $basicProjects = [ordered]@{
+        "api"         = "end-api"
+        "auth"        = "end-auth"
+        "boardapi"    = "end-boardapi"
+        "rtc"         = "end-rtc"
+        "rtcpeerhost" = "end-rtcpeerhost"
+        "search"      = "end-search-core"
+        "tasks"       = "end-tasks"
+        "web"         = "end-web"
+    }
+
+    D:
+    cd $endorRootFolder
+
+    foreach ($project in $basicProjects.Keys) {
+        Write-Host -ForegroundColor Green "Run $project"
+        py cb.py -s $project
+    }
+}
+Set-Alias -Name reb -Value RunBasicEndor
 
 Function ChangeToEndorDirectory([string]$projectName) 
 { 
