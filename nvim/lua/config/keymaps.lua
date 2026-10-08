@@ -58,3 +58,5 @@ keymap('n', '<leader>x', '*``cgn', { desc = "Quick replace word under cursor (se
 -- Yank entire file
 keymap("n", "<leader>ya", "ggVGy", { desc = "Yank entire file" })
 keymap("n", "<leader>va", "ggVG", { desc = "Select entire file" })
+
+keymap("n", "<leader>yp", function() vim.fn.setreg("+", vim.fn.expand("%:p")) end, { desc = "Copy absolute file path" })
