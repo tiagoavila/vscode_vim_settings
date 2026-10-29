@@ -7,17 +7,24 @@ Set-PSReadLineOption -ViModeIndicator Cursor
 Function Run-Azurite { azurite --silent --location c:\azurite --debug c:\azurite\debug.log --skipApiVersionCheck }
 Set-Alias -Name azrt -Value Run-Azurite
 
-Function UseNode16 { nvm use 16.13.2 }
+Function UseNode16 { 
+    nvm use 16.13.2 
+}
+
 Set-Alias -Name un16 -Value UseNode16
 
 Function UseNode20 { nvm use 20.13.1 }
 Set-Alias -Name un20 -Value UseNode20
 
+Function UseNode22 {
+    nvm use 22.20.0 
+}
+
 $corebridgeRootFolder = "D:\CoreBridge\repos"
 $endorRootFolder = "D:\CoreBridge\repos\Endor"
 $ecommRootFolder = "D:\Corebridge\repos\Ecomm"
 
-$processDictionary = @{
+$endorProcessDictionary = @{
     "api" = "Endor.Api.Web"
     "auth" = "Endor.Auth.Web"
     "boardapi" = "Endor.BoardApi.Web"
@@ -33,6 +40,11 @@ $processDictionary = @{
     "ate" = "ATE"
 }
 
+# Processes that only have a generic name (powershell/node), so they are identified by their console window title
+$endorWindowTitleDictionary = @{
+    "web" = "ng serve (corebridge)"
+}
+
 Function CheckoutAndRunEndor([string]$branchID, [string]$project, [switch]$all) 
 { 
 	write-host -ForegroundColor green "Checkout and Run Endor on Feature Branch END-$branchID"
@@ -44,6 +56,9 @@ Function CheckoutAndRunEndor([string]$branchID, [string]$project, [switch]$all)
     
     # Add project parameter if specified
     if (-not [string]::IsNullOrWhiteSpace($project)) {
+        if ($project -eq "web") {
+            UseNode22
+        }
         $command += " -s $project -basic"
     } else {
         $command += " -s"
@@ -76,6 +91,9 @@ Function CheckoutAndRunEndorDev([string]$project = "")
 	D:
 	cd $endorRootFolder
 	if (-not [string]::IsNullOrWhiteSpace($project)) {
+        if ($project -eq "web") {
+            UseNode22
+        }
         py cb.py -c dev -s $project
     } else {
         py cb.py -c dev -s
@@ -89,6 +107,10 @@ Function RunEndor([string[]]$project = @())
     cd $endorRootFolder
     if ($project.Count -gt 0) {
         foreach ($p in $project) {
+            if ($p -eq "web") {
+                UseNode22
+            }
+
             Write-Host -ForegroundColor Green "Run $p"
             py cb.py -s $p
         }
@@ -116,6 +138,10 @@ Function RunBasicEndor
     cd $endorRootFolder
 
     foreach ($project in $basicProjects.Keys) {
+        if ($project -eq "web") {
+            UseNode22
+        }
+
         Write-Host -ForegroundColor Green "Run $project"
         py cb.py -s $project
     }
@@ -180,12 +206,14 @@ Set-Alias -Name ttb -Value TextToBinary
 
 Function RunEcommAdmin()
 {
+    UseNode16
+
 	write-host -ForegroundColor green "Run Ecomm Admin"
 	D:
 	cd D:\Corebridge\repos\Ecomm\ecomm-admin
 	npm start
 }
-Set-Alias -Name reca -Value RunEcommAdmin
+Set-Alias -Name recadm -Value RunEcommAdmin
 
 Function ChangeToV2CbdMigrationFolder()
 {
@@ -215,7 +243,7 @@ function CheckEndorProcessesRunning {
     $defaultKeys = @("api", "auth", "integrations", "rtc", "rtcpeerhost", "search")
 
     # Determine which keys to check
-    $keysToCheck = if ($all) { $processDictionary.Keys } else { $defaultKeys }
+    $keysToCheck = if ($all) { $endorProcessDictionary.Keys } else { $defaultKeys }
 
     # Get running process names
     $runningProcesses = Get-Process | Select-Object -ExpandProperty ProcessName
@@ -224,7 +252,7 @@ function CheckEndorProcessesRunning {
     $missingProcessKeys = @()
 
     foreach ($category in $keysToCheck) {
-        $process = $processDictionary[$category]
+        $process = $endorProcessDictionary[$category]
         if ($process -notin $runningProcesses) {
             $missingProcessKeys += $category
             Invoke-Expression "re $category"
@@ -241,44 +269,65 @@ function CheckEndorProcessesRunning {
 
 Set-Alias -Name cepr -Value CheckEndorProcessesRunning
 
-Function KillProcessByName([string]$processName = "")
+Function StopEndorProcess([string]$processName)
 {
-    # If no process name provided, kill all processes in the dictionary
-    if ([string]::IsNullOrEmpty($processName)) {
-        Write-Host -ForegroundColor Yellow "Killing all Endor processes"
-        
-        foreach ($key in $processDictionary.Keys) {
-            $actualProcessName = $processDictionary[$key]
-                        
-			$processes = Get-Process -Name $actualProcessName -ErrorAction SilentlyContinue
-			if ($processes) {
-				Stop-Process -InputObject $processes -Force
-				Write-Host -ForegroundColor Blue "Process '$actualProcessName' was killed"
-			} else {
-				Write-Host -ForegroundColor Gray "Process '$actualProcessName' is not running"
-			}
-        }
+    $matchingProcesses = Get-Process -Name $processName -ErrorAction SilentlyContinue
+    if (-not $matchingProcesses) {
+        Write-Host -ForegroundColor Gray "Process '$processName' is not running"
+        return
     }
-    # If a process name is provided, kill just that one
-    else {
-        if ($processDictionary.ContainsKey($processName)) {
-            $actualProcessName = $processDictionary[$processName]
-                        
-			$processes = Get-Process -Name $actualProcessName -ErrorAction SilentlyContinue
-			if ($processes) {
-				Stop-Process -InputObject $processes -Force
-				Write-Host -ForegroundColor Blue "Process '$actualProcessName' was killed"
-			} else {
-				Write-Host -ForegroundColor Yellow "Process '$actualProcessName' is not running"
-			}
-        } else {
-            Write-Host -ForegroundColor Red "Process name '$processName' not found in the dictionary"
+
+    $processIds = $matchingProcesses.Id -join ", "
+    Write-Host -ForegroundColor Cyan "Found $(@($matchingProcesses).Count) '$processName' process(es), PID: $processIds"
+
+    Stop-Process -InputObject $matchingProcesses -Force
+    Write-Host -ForegroundColor Blue "Process '$processName' was killed"
+}
+
+Function StopEndorProcessByWindowTitle([string]$windowTitle)
+{
+    $hostProcesses = Get-Process | Where-Object { $_.MainWindowTitle -eq $windowTitle }
+    if (-not $hostProcesses) {
+        Write-Host -ForegroundColor Gray "Process '$windowTitle' is not running"
+        return
+    }
+
+    # npm and ng run as child processes of the window's powershell host, so the whole tree
+    # must be killed, otherwise the node dev server keeps running and holding its port
+    foreach ($hostProcess in $hostProcesses) {
+        taskkill /PID $hostProcess.Id /T /F | Out-Null
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host -ForegroundColor Red "Failed to kill '$windowTitle' (PID $($hostProcess.Id)), try an elevated shell"
+            continue
         }
+        Write-Host -ForegroundColor Blue "Process '$windowTitle' was killed"
     }
 }
 
-# Set up an alias 'kp' for the function
-Set-Alias -Name kp -Value KillProcessByName
+Function KillEndorProcessByName([string]$processName = "")
+{
+    if ([string]::IsNullOrEmpty($processName)) {
+        Write-Host -ForegroundColor Yellow "Killing all Endor processes"
+        $endorProcessDictionary.Values | ForEach-Object { StopEndorProcess $_ }
+        $endorWindowTitleDictionary.Values | ForEach-Object { StopEndorProcessByWindowTitle $_ }
+        return
+    }
+
+    if ($endorProcessDictionary.ContainsKey($processName)) {
+        StopEndorProcess $endorProcessDictionary[$processName]
+        return
+    }
+
+    if ($endorWindowTitleDictionary.ContainsKey($processName)) {
+        StopEndorProcessByWindowTitle $endorWindowTitleDictionary[$processName]
+        return
+    }
+
+    Write-Host -ForegroundColor Red "Process name '$processName' not found in the dictionary"
+}
+
+# Set up an alias 'kep' for the function
+Set-Alias -Name kep -Value KillEndorProcessByName
 
 Function OpenInRider([string]$projectName = "")
 {
@@ -337,7 +386,7 @@ Function OpenInCursor([string]$projectName = "")
         "tasks"         = "$endorRootFolder\end-tasks"
         "web"           = "$endorRootFolder\end-web"
         "ec"            = "$ecommRootFolder\ecomm-api-storefront\trunk\WebApps\Znode\Projects"
-        "eca"           = "$ecommRootFolder\ecomm-admin"
+        "ecadm"         = "$ecommRootFolder\ecomm-admin"
         "cbms"          = "$ecommRootFolder\corebridgefiles\trunk"
         "ecfe"          = "$ecommRootFolder\ecomm-api-storefront\trunk\WebApps\Znode\Projects\Znode.Engine.MvcDemo\Scripts\Typescripts"
         "v2cp"          = "$ecommRootFolder\corebridgefiles\trunk\WebApps\CustomerPortal"
