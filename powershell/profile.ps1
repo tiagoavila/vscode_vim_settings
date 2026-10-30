@@ -278,7 +278,6 @@ Function StopEndorProcess([string]$processName)
     }
 
     $processIds = $matchingProcesses.Id -join ", "
-    Write-Host -ForegroundColor Cyan "Found $(@($matchingProcesses).Count) '$processName' process(es), PID: $processIds"
 
     Stop-Process -InputObject $matchingProcesses -Force
     Write-Host -ForegroundColor Blue "Process '$processName' was killed"
