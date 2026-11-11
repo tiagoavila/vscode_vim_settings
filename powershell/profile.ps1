@@ -136,6 +136,7 @@ Function RunBasicEndor
 
     D:
     cd $endorRootFolder
+    Write-Host -ForegroundColor Green "Running Basic Endor Projects."
 
     foreach ($project in $basicProjects.Keys) {
         if ($project -eq "web") {
@@ -194,7 +195,7 @@ Function ChangeToEndorDirectory([string]$projectName)
         }
     }
 }
-Set-Alias -Name cde -Value ChangeToEndorDirectory
+Set-Alias -Name ced -Value ChangeToEndorDirectory
 
 Function TextToBinary([string]$text = "") 
 { 
